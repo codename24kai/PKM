@@ -5,7 +5,7 @@
 Panduan cepat buat kerja bareng di repo ini tanpa bikin `main` rusak 😎  
 
 ---
-
+```bash
 ## 🧩 1. Setup Awal
 git clone https://github.com/codename24kai/PKM.git
 cd REPO
