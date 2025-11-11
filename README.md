@@ -17,8 +17,9 @@ git config --global user.email "emailkamu@example.com"
 git add .
 git commit -m "catatan"
 
-#push 
+#pushS 
 git push -u origin main
 
-
+#pull
+git pull origin main
 
