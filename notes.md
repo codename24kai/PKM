@@ -1,3 +1,5 @@
+html lama
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -11,15 +13,19 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <!-- Header Sticky -->
     <header class="header" id="header">
         <div class="container">
             <div class="header__content">
                 <div class="header__logo">
-                    <img src="Logo-Header.svg" alt="logo-karang-taruna-bintaro">
+                    <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="40" height="40" rx="8" fill="#A50104"/>
+                        <path d="M20 10L28 16V24L20 30L12 24V16L20 10Z" fill="#FCBA04"/>
+                        <circle cx="20" cy="20" r="4" fill="white"/>
+                    </svg>
                     <span class="header__title">Karang Taruna</span>
                 </div>
                 <nav class="nav" id="nav">
-                    <div class="nav__overlay" id="navOverlay"></div>
                     <button class="nav__close" id="navClose" aria-label="Tutup menu">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <line x1="18" y1="6" x2="6" y2="18"></line>
@@ -46,7 +52,8 @@
         </div>
     </header>
 
-    <div class="breadcrumb" id="breadcrumb" style="display: none;">
+    <!-- Breadcrumb -->
+    <div class="breadcrumb" id="breadcrumb">
         <div class="container">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb__list" id="breadcrumbList">
@@ -55,7 +62,9 @@
             </nav>
         </div>
     </div>
+
     <main class="main">
+        <!-- Section: Beranda -->
         <section class="section section--hero" id="beranda">
             <div class="container">
                 <div class="hero">
@@ -77,25 +86,27 @@
                     </div>
                 </div>
 
+                <!-- Statistik -->
                 <div class="stats">
                     <div class="stats__item">
-                        <div class="stats__number" data-target="150">0</div>
+                        <div class="stats__number">150+</div>
                         <div class="stats__label">Pengaduan Selesai</div>
                     </div>
                     <div class="stats__item">
-                        <div class="stats__number" data-target="75">0</div>
+                        <div class="stats__number">75+</div>
                         <div class="stats__label">Mediasi Berhasil</div>
                     </div>
                     <div class="stats__item">
-                        <div class="stats__number" data-target="40">0</div>
+                        <div class="stats__number">40+</div>
                         <div class="stats__label">Proposal Disetujui</div>
                     </div>
                     <div class="stats__item">
-                        <div class="stats__number" data-target="95">0%</div>
+                        <div class="stats__number">95%</div>
                         <div class="stats__label">Kepuasan Layanan</div>
                     </div>
                 </div>
 
+                <!-- Layanan Ringkas -->
                 <div class="services">
                     <h2 class="section__title">Layanan Kami</h2>
                     <div class="services__grid">
@@ -136,6 +147,8 @@
                 </div>
             </div>
         </section>
+
+        <!-- Section: Informasi -->
         <section class="section section--gray" id="informasi">
             <div class="container">
                 <h2 class="section__title">Informasi & Berita</h2>
@@ -161,12 +174,16 @@
                 </div>
 
                 <div class="articles-grid" id="articlesGrid">
-                    </div>
+                    <!-- Articles will be inserted here by JS -->
+                </div>
 
                 <div class="pagination" id="pagination">
-                    </div>
+                    <!-- Pagination will be inserted here by JS -->
+                </div>
             </div>
         </section>
+
+        <!-- Section: Mediasi -->
         <section class="section" id="mediasi">
             <div class="container">
                 <h2 class="section__title">Layanan Mediasi</h2>
@@ -197,7 +214,7 @@
 
                             <div class="form__group">
                                 <label for="mediasiKontak" class="form__label">Kontak (HP/Email) <span class="required">*</span></label>
-                                <input type="text" id="mediasiKontak" class="form__input" placeholder="contoh: user@mail.com" required aria-required="true">
+                                <input type="text" id="mediasiKontak" class="form__input" required aria-required="true">
                                 <span class="form__error" id="mediasiKontakError"></span>
                             </div>
 
@@ -228,13 +245,15 @@
                 </div>
             </div>
         </section>
+
+        <!-- Section: Pengaduan -->
         <section class="section section--gray" id="pengaduan">
             <div class="container">
                 <h2 class="section__title">Pengaduan Masyarakat</h2>
                 
                 <div class="pengaduan-header">
                     <p class="pengaduan-header__text">Sampaikan keluhan, aspirasi, atau laporan Anda. Setiap pengaduan akan mendapat nomor tracking untuk monitoring status.</p>
-                    <button type="button" id="loadDraftBtn" class="btn btn--secondary btn--sm">Muat Draft Tersimpan</button>
+                    <button id="loadDraftBtn" class="btn btn--secondary btn--sm">Muat Draft Tersimpan</button>
                 </div>
 
                 <form id="pengaduanForm" class="form form--large" novalidate>
@@ -306,16 +325,19 @@
                     </div>
                 </form>
 
+                <!-- Tracking Status -->
                 <div class="tracking-section">
                     <h3 class="tracking-section__title">Lacak Status Pengaduan</h3>
                     <div class="tracking-form">
                         <input type="text" id="trackingInput" class="form__input" placeholder="Masukkan nomor pengaduan (CTR-YYYYMMDD-XXXX)">
-                        <button type="button" id="trackingBtn" class="btn btn--primary">Lacak</button>
+                        <button id="trackingBtn" class="btn btn--primary">Lacak</button>
                     </div>
                     <div id="trackingResult" class="tracking-result" style="display: none;"></div>
                 </div>
             </div>
         </section>
+
+        <!-- Section: Pengajuan -->
         <section class="section" id="pengajuan">
             <div class="container">
                 <h2 class="section__title">Pengajuan Proposal</h2>
@@ -381,16 +403,19 @@
                     </div>
                 </form>
 
+                <!-- Status Pengajuan -->
                 <div class="status-section">
                     <h3 class="status-section__title">Cek Status Pengajuan</h3>
                     <div class="status-form">
-                        <input type="text" id="statusInput" class="form__input" placeholder="Masukkan nomor pengajuan (PRO-YYYYMMDD-XXXX)">
-                        <button type="button" id="statusBtn" class="btn btn--primary">Cek Status</button>
+                        <input type="text" id="statusInput" class="form__input" placeholder="Masukkan nomor pengajuan">
+                        <button id="statusBtn" class="btn btn--primary">Cek Status</button>
                     </div>
                     <div id="statusResult" class="status-result" style="display: none;"></div>
                 </div>
             </div>
         </section>
+
+        <!-- Section: Admin -->
         <section class="section section--gray" id="admin">
             <div class="container">
                 <h2 class="section__title">Panel Admin</h2>
@@ -426,12 +451,14 @@
                     </div>
 
                     <div id="adminContent" class="admin-content">
-                        </div>
+                        <!-- Content will be loaded by JS -->
+                    </div>
                 </div>
             </div>
         </section>
-        </main>
+    </main>
 
+    <!-- Footer -->
     <footer class="footer">
         <div class="container">
             <div class="footer__content">
@@ -454,8 +481,10 @@
         </div>
     </footer>
 
+    <!-- Toast Notification -->
     <div id="toast" class="toast" role="alert" aria-live="polite" aria-atomic="true"></div>
 
+    <!-- Modal -->
     <div id="modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
         <div class="modal__overlay" id="modalOverlay"></div>
         <div class="modal__content">
@@ -467,6 +496,7 @@
             <div id="modalFooter" class="modal__footer"></div>
         </div>
     </div>
+
     <script src="script.js"></script>
 </body>
 </html>
