@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Informasi - Portal Karang Taruna</title>
+    <link rel="stylesheet" href="assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header" id="header">
+        <div class="container">
+            <div class="header__content">
+                <div class="header__logo">
+                    <img src="assets/img/Logo-Header.svg" alt="logo-karang-taruna-bintaro">
+                    <span class="header__title">Karang Taruna</span>
+                </div>
+                <nav class="nav" id="nav">
+                    <div class="nav__overlay" id="navOverlay"></div>
+                    <button class="nav__close" id="navClose" aria-label="Tutup menu">...</button>
+                    <ul class="nav__list">
+                         <li><a href="index.html" class="nav__link">Beranda</a></li>
+                        <li><a href="informasi.html" class="nav__link nav__link--active">Informasi</a></li>
+                        <li><a href="galeri.html" class="nav__link">Galeri</a></li>
+                        <li><a href="pengaduan.html" class="nav__link">Pengaduan</a></li>
+                        <li><a href="pengajuan.html" class="nav__link">Pengajuan</a></li>
+                    </ul>
+                </nav>
+                <button class="nav__toggle" id="navToggle" aria-label="Buka menu">...</button>
+            </div>
+        </div>
+    </header>
+
+    <div class="breadcrumb" id="breadcrumb" style="display: none;">
+        <div class="container">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb__list" id="breadcrumbList">
+                    <li class="breadcrumb__item"><a href="index.html">Beranda</a></li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+
+    <main class="main">
+        <section class="section section--gray" id="informasi">
+            <div class="container">
+                <h2 class="section__title">Informasi & Berita</h2>
+                
+                <div class="info-controls">
+                    <div class="search-box">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="9" cy="9" r="6"></circle>
+                            <path d="M14 14L18 18"></path>
+                        </svg>
+                        <input type="text" id="searchInput" class="search-box__input" placeholder="Cari artikel...">
+                    </div>
+                    <div class="filter-group">
+                        <label for="categoryFilter" class="filter-group__label">Kategori:</label>
+                        <select id="categoryFilter" class="filter-group__select">
+                            <option value="">Semua</option>
+                            <option value="pengumuman">Pengumuman</option>
+                            <option value="kegiatan">Kegiatan</option>
+                            <option value="berita">Berita</option>
+                            <option value="artikel">Artikel</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="articles-grid" id="articlesGrid">
+                    </div>
+
+                <div class="pagination" id="pagination">
+                    </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+             <div class="footer__content">
+                <div class="footer__section">
+                    <h4 class="footer__title">Karang Taruna</h4>
+                    <p class="footer__text">Organisasi kepemudaan yang bergerak dalam pemberdayaan masyarakat dan pelayanan publik.</p>
+                </div>
+                <div class="footer__section">
+                    <h4 class="footer__title">Kontak</h4>
+                    <p class="footer__text">Email: info@karangtaruna.id<br>Telp: (021) 1234-5678<br>Alamat: Jl. Pemuda No. 123</p>
+                </div>
+                <div class="footer__section">
+                    <h4 class="footer__title">Jam Layanan</h4>
+                    <p class="footer__text">Senin - Jumat: 08.00 - 16.00<br>Sabtu: 08.00 - 12.00<br>Minggu: Tutup</p>
+                </div>
+            </div>
+            <div class="footer__bottom">
+                <p>&copy; 2025 Karang Taruna. Hak Cipta Dilindungi.</p>
+            </div>
+        </div>
+    </footer>
+
+    <div id="toast" class="toast" role="alert" aria-live="polite" aria-atomic="true"></div>
+    <div id="modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+        <div class="modal__overlay" id="modalOverlay"></div>
+        <div class="modal__content">
+            <div class="modal__header">
+                <h3 id="modalTitle" class="modal__title"></h3>
+                <button class="modal__close" id="modalClose" aria-label="Tutup modal">×</button>
+            </div>
+            <div id="modalBody" class="modal__body"></div>
+            <div id="modalFooter" class="modal__footer"></div>
+        </div>
+    </div>
+    
+    <script src="assets/script.js"></script>
+</body>
+</html>

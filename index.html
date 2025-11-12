@@ -8,14 +8,14 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
     <header class="header" id="header">
         <div class="container">
             <div class="header__content">
                 <div class="header__logo">
-                    <img src="Logo-Header.svg" alt="logo-karang-taruna-bintaro">
+                    <img src="assets/img/Logo-Header.svg" alt="logo-karang-taruna-bintaro">
                     <span class="header__title">Karang Taruna</span>
                 </div>
                 <nav class="nav" id="nav">
@@ -27,12 +27,11 @@
                         </svg>
                     </button>
                     <ul class="nav__list">
-                        <li><a href="#beranda" class="nav__link nav__link--active">Beranda</a></li>
-                        <li><a href="#informasi" class="nav__link">Informasi</a></li>
-                        <li><a href="#mediasi" class="nav__link">Mediasi</a></li>
-                        <li><a href="#pengaduan" class="nav__link">Pengaduan</a></li>
-                        <li><a href="#pengajuan" class="nav__link">Pengajuan</a></li>
-                        <li><a href="#admin" class="nav__link">Admin</a></li>
+                        <li><a href="index.html" class="nav__link nav__link--active">Beranda</a></li>
+                        <li><a href="informasi.html" class="nav__link">Informasi</a></li>
+                        <li><a href="galeri.html" class="nav__link">Galeri</a></li>
+                        <li><a href="pengaduan.html" class="nav__link">Pengaduan</a></li>
+                        <li><a href="pengajuan.html" class="nav__link">Pengajuan</a></li>
                     </ul>
                 </nav>
                 <button class="nav__toggle" id="navToggle" aria-label="Buka menu">
@@ -50,25 +49,25 @@
         <div class="container">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb__list" id="breadcrumbList">
-                    <li class="breadcrumb__item"><a href="#beranda">Beranda</a></li>
+                    <li class="breadcrumb__item"><a href="index.html">Beranda</a></li>
                 </ol>
             </nav>
         </div>
     </div>
+    
     <main class="main">
         <section class="section section--hero" id="beranda">
             <div class="container">
                 <div class="hero">
                     <div class="hero__content">
-                        <h1 class="hero__title">Selamat Datang di Portal Karang Taruna</h1>
+                        <h1 class="hero__title">Selamat Datang di Karang Taruna Sub-unit 006/013</h1>
                         <p class="hero__subtitle">Melayani masyarakat dengan integritas, transparansi, dan profesionalisme</p>
                         <div class="hero__actions">
-                            <a href="#pengaduan" class="btn btn--primary">Laporkan Pengaduan</a>
-                            <a href="#informasi" class="btn btn--secondary">Lihat Informasi</a>
+                            <a href="pengaduan.html" class="btn btn--primary">Laporkan Pengaduan</a>
+                            <a href="informasi.html" class="btn btn--secondary">Lihat Informasi</a>
                         </div>
                     </div>
                     <div class="hero__image">
-                        <svg width="400" height="300" viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <rect x="50" y="50" width="300" height="200" rx="12" fill="#FCBA04" opacity="0.2"/>
                             <rect x="70" y="70" width="260" height="160" rx="8" fill="#A50104" opacity="0.3"/>
                             <circle cx="200" cy="150" r="60" fill="#FCBA04"/>
@@ -106,9 +105,9 @@
                                     <path d="M24 14L32 20V28L24 34L16 28V20L24 14Z" stroke="#A50104" stroke-width="2"/>
                                 </svg>
                             </div>
-                            <h3 class="service-card__title">Mediasi Konflik</h3>
-                            <p class="service-card__description">Layanan mediasi profesional untuk menyelesaikan konflik warga dengan pendekatan kekeluargaan</p>
-                            <a href="#mediasi" class="service-card__link">Ajukan Mediasi →</a>
+                            <h3 class="service-card__title">Galeri Kegiatan</h3>
+                            <p class="service-card__description">Lihat dokumentasi foto dari berbagai kegiatan dan program yang telah kami laksanakan.</p>
+                            <a href="galeri.html" class="service-card__link">Lihat Galeri →</a>
                         </div>
                         <div class="service-card">
                             <div class="service-card__icon">
@@ -118,8 +117,8 @@
                                 </svg>
                             </div>
                             <h3 class="service-card__title">Pengaduan Masyarakat</h3>
-                            <p class="service-card__description">Sampaikan keluhan dan aspirasi Anda dengan mudah dan terpantau secara real-time</p>
-                            <a href="#pengaduan" class="service-card__link">Buat Pengaduan →</a>
+                            <p class="service-card__description">Sampaikan keluhan dan aspirasi Anda dengan mudah dan terpantau secara real-time.</p>
+                            <a href="pengaduan.html" class="service-card__link">Buat Pengaduan →</a>
                         </div>
                         <div class="service-card">
                             <div class="service-card__icon">
@@ -129,305 +128,22 @@
                                 </svg>
                             </div>
                             <h3 class="service-card__title">Pengajuan Proposal</h3>
-                            <p class="service-card__description">Ajukan proposal kegiatan atau program dengan proses yang transparan dan terstruktur</p>
-                            <a href="#pengajuan" class="service-card__link">Ajukan Proposal →</a>
+                            <p class="service-card__description">Ajukan proposal kegiatan atau program dengan proses yang transparan dan terstruktur.</p>
+                            <a href="pengajuan.html" class="service-card__link">Ajukan Proposal →</a>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
-        <section class="section section--gray" id="informasi">
+        <section class="section section--gray" id="informasi-singkat">
             <div class="container">
-                <h2 class="section__title">Informasi & Berita</h2>
+                <div class="section__header">
+                    <h2 class="section__title" style="text-align: left; margin-bottom: 0;">Informasi Terbaru</h2>
+                    <a href="informasi.html" class="btn btn--secondary btn--sm">Lihat Semua Informasi</a>
+                </div>
                 
-                <div class="info-controls">
-                    <div class="search-box">
-                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
-                            <circle cx="9" cy="9" r="6"></circle>
-                            <path d="M14 14L18 18"></path>
-                        </svg>
-                        <input type="text" id="searchInput" class="search-box__input" placeholder="Cari artikel...">
+                <div class="articles-grid" id="briefArticlesGrid">
                     </div>
-                    <div class="filter-group">
-                        <label for="categoryFilter" class="filter-group__label">Kategori:</label>
-                        <select id="categoryFilter" class="filter-group__select">
-                            <option value="">Semua</option>
-                            <option value="pengumuman">Pengumuman</option>
-                            <option value="kegiatan">Kegiatan</option>
-                            <option value="berita">Berita</option>
-                            <option value="artikel">Artikel</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div class="articles-grid" id="articlesGrid">
-                    </div>
-
-                <div class="pagination" id="pagination">
-                    </div>
-            </div>
-        </section>
-        <section class="section" id="mediasi">
-            <div class="container">
-                <h2 class="section__title">Layanan Mediasi</h2>
-                
-                <div class="mediasi-content">
-                    <div class="mediasi-info">
-                        <h3 class="mediasi-info__title">Apa itu Mediasi?</h3>
-                        <p class="mediasi-info__text">Mediasi adalah proses penyelesaian sengketa yang melibatkan pihak ketiga netral (mediator) untuk membantu para pihak mencapai kesepakatan bersama. Karang Taruna menyediakan layanan mediasi profesional untuk konflik antarwarga, sengketa keluarga, atau permasalahan komunitas lainnya.</p>
-                        
-                        <h4 class="mediasi-info__subtitle">Keuntungan Mediasi:</h4>
-                        <ul class="mediasi-info__list">
-                            <li>Proses cepat dan efisien</li>
-                            <li>Biaya terjangkau atau gratis</li>
-                            <li>Kerahasiaan terjamin</li>
-                            <li>Solusi win-win untuk semua pihak</li>
-                            <li>Mempertahankan hubungan baik</li>
-                        </ul>
-                    </div>
-
-                    <div class="mediasi-form-container">
-                        <h3 class="form__title">Form Permintaan Mediasi</h3>
-                        <form id="mediasiForm" class="form" novalidate>
-                            <div class="form__group">
-                                <label for="mediasiNama" class="form__label">Nama Lengkap <span class="required">*</span></label>
-                                <input type="text" id="mediasiNama" class="form__input" required aria-required="true">
-                                <span class="form__error" id="mediasiNamaError"></span>
-                            </div>
-
-                            <div class="form__group">
-                                <label for="mediasiKontak" class="form__label">Kontak (HP/Email) <span class="required">*</span></label>
-                                <input type="text" id="mediasiKontak" class="form__input" placeholder="contoh: user@mail.com" required aria-required="true">
-                                <span class="form__error" id="mediasiKontakError"></span>
-                            </div>
-
-                            <div class="form__group">
-                                <label for="mediasiPihak" class="form__label">Pihak yang Terlibat <span class="required">*</span></label>
-                                <textarea id="mediasiPihak" class="form__textarea" rows="3" placeholder="Sebutkan semua pihak yang terlibat dalam konflik" required aria-required="true"></textarea>
-                                <span class="form__error" id="mediasiPihakError"></span>
-                            </div>
-
-                            <div class="form__group">
-                                <label for="mediasiKasus" class="form__label">Ringkasan Kasus <span class="required">*</span></label>
-                                <textarea id="mediasiKasus" class="form__textarea" rows="5" placeholder="Jelaskan secara singkat kronologi dan inti permasalahan" required aria-required="true"></textarea>
-                                <span class="form__error" id="mediasiKasusError"></span>
-                            </div>
-
-                            <div class="form__group">
-                                <label for="mediasiTanggal" class="form__label">Tanggal Preferensi Mediasi <span class="required">*</span></label>
-                                <input type="date" id="mediasiTanggal" class="form__input" required aria-required="true">
-                                <span class="form__error" id="mediasiTanggalError"></span>
-                            </div>
-
-                            <div class="form__actions">
-                                <button type="submit" class="btn btn--primary">Kirim Permintaan</button>
-                                <button type="reset" class="btn btn--secondary">Reset</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <section class="section section--gray" id="pengaduan">
-            <div class="container">
-                <h2 class="section__title">Pengaduan Masyarakat</h2>
-                
-                <div class="pengaduan-header">
-                    <p class="pengaduan-header__text">Sampaikan keluhan, aspirasi, atau laporan Anda. Setiap pengaduan akan mendapat nomor tracking untuk monitoring status.</p>
-                    <button type="button" id="loadDraftBtn" class="btn btn--secondary btn--sm">Muat Draft Tersimpan</button>
-                </div>
-
-                <form id="pengaduanForm" class="form form--large" novalidate>
-                    <div class="form__row">
-                        <div class="form__group form__group--full">
-                            <label for="pengaduanJudul" class="form__label">Judul Pengaduan <span class="required">*</span></label>
-                            <input type="text" id="pengaduanJudul" class="form__input" required aria-required="true">
-                            <span class="form__error" id="pengaduanJudulError"></span>
-                        </div>
-                    </div>
-
-                    <div class="form__row">
-                        <div class="form__group">
-                            <label for="pengaduanKategori" class="form__label">Kategori <span class="required">*</span></label>
-                            <select id="pengaduanKategori" class="form__select" required aria-required="true">
-                                <option value="">Pilih kategori</option>
-                                <option value="infrastruktur">Infrastruktur</option>
-                                <option value="lingkungan">Lingkungan</option>
-                                <option value="sosial">Sosial</option>
-                                <option value="keamanan">Keamanan</option>
-                                <option value="layanan">Layanan Publik</option>
-                                <option value="lainnya">Lainnya</option>
-                            </select>
-                            <span class="form__error" id="pengaduanKategoriError"></span>
-                        </div>
-
-                        <div class="form__group">
-                            <label for="pengaduanLokasi" class="form__label">Lokasi <span class="required">*</span></label>
-                            <input type="text" id="pengaduanLokasi" class="form__input" placeholder="Contoh: Jl. Merdeka No. 10" required aria-required="true">
-                            <span class="form__error" id="pengaduanLokasiError"></span>
-                        </div>
-                    </div>
-
-                    <div class="form__group">
-                        <label for="pengaduanDeskripsi" class="form__label">Deskripsi Pengaduan <span class="required">*</span></label>
-                        <textarea id="pengaduanDeskripsi" class="form__textarea" rows="6" placeholder="Jelaskan pengaduan Anda secara detail..." required aria-required="true"></textarea>
-                        <span class="form__error" id="pengaduanDeskripsiError"></span>
-                    </div>
-
-                    <div class="form__group">
-                        <label for="pengaduanFile" class="form__label">Upload Bukti (Foto/PDF, maks 5MB)</label>
-                        <div class="file-upload">
-                            <input type="file" id="pengaduanFile" class="file-upload__input" accept="image/*,.pdf" aria-describedby="fileHelp">
-                            <label for="pengaduanFile" class="file-upload__label">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-                                    <polyline points="17 8 12 3 7 8"></polyline>
-                                    <line x1="12" y1="3" x2="12" y2="15"></line>
-                                </svg>
-                                <span id="fileLabel">Pilih file atau drag & drop</span>
-                            </label>
-                        </div>
-                        <small id="fileHelp" class="form__help">Format: JPG, PNG, PDF. Maksimal 5MB</small>
-                        <span class="form__error" id="pengaduanFileError"></span>
-                        
-                        <div id="filePreview" class="file-preview" style="display: none;">
-                            <div class="file-preview__header">
-                                <span class="file-preview__title">Preview File:</span>
-                                <button type="button" id="removeFileBtn" class="file-preview__remove" aria-label="Hapus file">×</button>
-                            </div>
-                            <div id="filePreviewContent" class="file-preview__content"></div>
-                        </div>
-                    </div>
-
-                    <div class="form__actions">
-                        <button type="submit" class="btn btn--primary">Kirim Pengaduan</button>
-                        <button type="button" id="saveDraftBtn" class="btn btn--secondary">Simpan Draft</button>
-                        <button type="reset" class="btn btn--tertiary">Reset</button>
-                    </div>
-                </form>
-
-                <div class="tracking-section">
-                    <h3 class="tracking-section__title">Lacak Status Pengaduan</h3>
-                    <div class="tracking-form">
-                        <input type="text" id="trackingInput" class="form__input" placeholder="Masukkan nomor pengaduan (CTR-YYYYMMDD-XXXX)">
-                        <button type="button" id="trackingBtn" class="btn btn--primary">Lacak</button>
-                    </div>
-                    <div id="trackingResult" class="tracking-result" style="display: none;"></div>
-                </div>
-            </div>
-        </section>
-        <section class="section" id="pengajuan">
-            <div class="container">
-                <h2 class="section__title">Pengajuan Proposal</h2>
-                
-                <div class="pengajuan-intro">
-                    <p>Ajukan proposal kegiatan atau program Anda. Pastikan dokumen proposal sudah lengkap sebelum diunggah.</p>
-                    <a href="#" id="downloadTemplateBtn" class="btn btn--secondary btn--sm">
-                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M14 10v2.67A1.33 1.33 0 0112.67 14H3.33A1.33 1.33 0 012 12.67V10M11.33 5.33L8 2M8 2L4.67 5.33M8 2v8"></path>
-                        </svg>
-                        Download Template Proposal
-                    </a>
-                </div>
-
-                <form id="pengajuanForm" class="form form--large" novalidate>
-                    <div class="form__row">
-                        <div class="form__group form__group--full">
-                            <label for="pengajuanJudul" class="form__label">Judul Proposal <span class="required">*</span></label>
-                            <input type="text" id="pengajuanJudul" class="form__input" required aria-required="true">
-                            <span class="form__error" id="pengajuanJudulError"></span>
-                        </div>
-                    </div>
-
-                    <div class="form__group">
-                        <label for="pengajuanRingkasan" class="form__label">Ringkasan Proposal <span class="required">*</span></label>
-                        <textarea id="pengajuanRingkasan" class="form__textarea" rows="4" placeholder="Jelaskan tujuan dan manfaat proposal Anda..." required aria-required="true"></textarea>
-                        <span class="form__error" id="pengajuanRingkasanError"></span>
-                    </div>
-
-                    <div class="form__row">
-                        <div class="form__group">
-                            <label for="pengajuanAnggaran" class="form__label">Anggaran (Rp) <span class="required">*</span></label>
-                            <input type="text" id="pengajuanAnggaran" class="form__input" placeholder="Contoh: 5000000" required aria-required="true">
-                            <span class="form__error" id="pengajuanAnggaranError"></span>
-                        </div>
-
-                        <div class="form__group">
-                            <label for="pengajuanPIC" class="form__label">Penanggung Jawab (PIC) <span class="required">*</span></label>
-                            <input type="text" id="pengajuanPIC" class="form__input" required aria-required="true">
-                            <span class="form__error" id="pengajuanPICError"></span>
-                        </div>
-                    </div>
-
-                    <div class="form__group">
-                        <label for="pengajuanDokumen" class="form__label">Upload Dokumen Proposal (PDF, maks 10MB) <span class="required">*</span></label>
-                        <div class="file-upload">
-                            <input type="file" id="pengajuanDokumen" class="file-upload__input" accept=".pdf" required aria-required="true">
-                            <label for="pengajuanDokumen" class="file-upload__label">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path>
-                                    <polyline points="13 2 13 9 20 9"></polyline>
-                                </svg>
-                                <span id="dokumenLabel">Pilih file PDF</span>
-                            </label>
-                        </div>
-                        <small class="form__help">Format: PDF. Maksimal 10MB</small>
-                        <span class="form__error" id="pengajuanDokumenError"></span>
-                    </div>
-
-                    <div class="form__actions">
-                        <button type="submit" class="btn btn--primary">Ajukan Proposal</button>
-                        <button type="reset" class="btn btn--secondary">Reset</button>
-                    </div>
-                </form>
-
-                <div class="status-section">
-                    <h3 class="status-section__title">Cek Status Pengajuan</h3>
-                    <div class="status-form">
-                        <input type="text" id="statusInput" class="form__input" placeholder="Masukkan nomor pengajuan (PRO-YYYYMMDD-XXXX)">
-                        <button type="button" id="statusBtn" class="btn btn--primary">Cek Status</button>
-                    </div>
-                    <div id="statusResult" class="status-result" style="display: none;"></div>
-                </div>
-            </div>
-        </section>
-        <section class="section section--gray" id="admin">
-            <div class="container">
-                <h2 class="section__title">Panel Admin</h2>
-                
-                <div id="adminLogin" class="admin-login">
-                    <div class="admin-login__card">
-                        <h3 class="admin-login__title">Login Admin</h3>
-                        <form id="adminLoginForm" class="form">
-                            <div class="form__group">
-                                <label for="adminUsername" class="form__label">Username</label>
-                                <input type="text" id="adminUsername" class="form__input" required>
-                            </div>
-                            <div class="form__group">
-                                <label for="adminPassword" class="form__label">Password</label>
-                                <input type="password" id="adminPassword" class="form__input" required>
-                            </div>
-                            <button type="submit" class="btn btn--primary btn--full">Login</button>
-                            <p class="admin-login__hint">Hint: username: admin, password: admin123</p>
-                        </form>
-                    </div>
-                </div>
-
-                <div id="adminPanel" class="admin-panel" style="display: none;">
-                    <div class="admin-panel__header">
-                        <h3 class="admin-panel__title">Dashboard Admin</h3>
-                        <button id="adminLogoutBtn" class="btn btn--secondary btn--sm">Logout</button>
-                    </div>
-
-                    <div class="admin-tabs">
-                        <button class="admin-tab admin-tab--active" data-tab="pengaduan">Pengaduan</button>
-                        <button class="admin-tab" data-tab="mediasi">Mediasi</button>
-                        <button class="admin-tab" data-tab="pengajuan">Pengajuan</button>
-                    </div>
-
-                    <div id="adminContent" class="admin-content">
-                        </div>
-                </div>
             </div>
         </section>
         </main>
@@ -467,6 +183,7 @@
             <div id="modalFooter" class="modal__footer"></div>
         </div>
     </div>
-    <script src="script.js"></script>
+    
+    <script src="assets/script.js"></script>
 </body>
 </html>

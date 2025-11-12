@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pengaduan - Portal Karang Taruna</title>
+    <link rel="stylesheet" href="assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header" id="header">
+        <div class="container">
+            <div class="header__content">
+                <div class="header__logo">
+                    <img src="assets/img/Logo-Header.svg" alt="logo-karang-taruna-bintaro">
+                    <span class="header__title">Karang Taruna</span>
+                </div>
+                <nav class="nav" id="nav">
+                    <div class="nav__overlay" id="navOverlay"></div>
+                    <button class="nav__close" id="navClose" aria-label="Tutup menu">...</button>
+                    <ul class="nav__list">
+                         <li><a href="index.html" class="nav__link">Beranda</a></li>
+                        <li><a href="informasi.html" class="nav__link">Informasi</a></li>
+                        <li><a href="galeri.html" class="nav__link">Galeri</a></li>
+                        <li><a href="pengaduan.html" class="nav__link nav__link--active">Pengaduan</a></li>
+                        <li><a href="pengajuan.html" class="nav__link">Pengajuan</a></li>
+                    </ul>
+                </nav>
+                <button class="nav__toggle" id="navToggle" aria-label="Buka menu">...</button>
+            </div>
+        </div>
+    </header>
+
+    <div class="breadcrumb" id="breadcrumb" style="display: none;">
+        <div class="container">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb__list" id="breadcrumbList">
+                    <li class="breadcrumb__item"><a href="index.html">Beranda</a></li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+
+    <main class="main">
+        <section class="section section--gray" id="pengaduan">
+            <div class="container">
+                <h2 class="section__title">Pengaduan Masyarakat</h2>
+                
+                <div class="pengaduan-header">
+                    <p class="pengaduan-header__text">Sampaikan keluhan, aspirasi, atau laporan Anda. Setiap pengaduan akan mendapat nomor tracking untuk monitoring status.</p>
+                    <button type="button" id="loadDraftBtn" class="btn btn--secondary btn--sm">Muat Draft Tersimpan</button>
+                </div>
+
+                <form id="pengaduanForm" class="form form--large" novalidate>
+                    <div class="form__row">
+                        <div class="form__group form__group--full">
+                            <label for="pengaduanJudul" class="form__label">Judul Pengaduan <span class="required">*</span></label>
+                            <input type="text" id="pengaduanJudul" class="form__input" required aria-required="true">
+                            <span class="form__error" id="pengaduanJudulError"></span>
+                        </div>
+                    </div>
+
+                    <div class="form__row">
+                        <div class="form__group">
+                            <label for="pengaduanKategori" class="form__label">Kategori <span class="required">*</span></label>
+                            <select id="pengaduanKategori" class="form__select" required aria-required="true">
+                                <option value="">Pilih kategori</option>
+                                <option value="infrastruktur">Infrastruktur</option>
+                                <option value="lingkungan">Lingkungan</option>
+                                <option value="sosial">Sosial</option>
+                                <option value="keamanan">Keamanan</option>
+                                <option value="layanan">Layanan Publik</option>
+                                <option value="lainnya">Lainnya</option>
+                            </select>
+                            <span class="form__error" id="pengaduanKategoriError"></span>
+                        </div>
+
+                        <div class="form__group">
+                            <label for="pengaduanLokasi" class="form__label">Lokasi <span class="required">*</span></label>
+                            <input type="text" id="pengaduanLokasi" class="form__input" placeholder="Contoh: Jl. Merdeka No. 10" required aria-required="true">
+                            <span class="form__error" id="pengaduanLokasiError"></span>
+                        </div>
+                    </div>
+
+                    <div class="form__group">
+                        <label for="pengaduanDeskripsi" class="form__label">Deskripsi Pengaduan <span class="required">*</span></label>
+                        <textarea id="pengaduanDeskripsi" class="form__textarea" rows="6" placeholder="Jelaskan pengaduan Anda secara detail..." required aria-required="true"></textarea>
+                        <span class="form__error" id="pengaduanDeskripsiError"></span>
+                    </div>
+
+                    <div class="form__group">
+                        <label for="pengaduanFile" class="form__label">Upload Bukti (Foto/PDF, maks 5MB)</label>
+                        <div class="file-upload">
+                            <input type="file" id="pengaduanFile" class="file-upload__input" accept="image/*,.pdf" aria-describedby="fileHelp">
+                            <label for="pengaduanFile" class="file-upload__label">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                    <polyline points="17 8 12 3 7 8"></polyline>
+                                    <line x1="12" y1="3" x2="12" y2="15"></line>
+                                </svg>
+                                <span id="fileLabel">Pilih file atau drag & drop</span>
+                            </label>
+                        </div>
+                        <small id="fileHelp" class="form__help">Format: JPG, PNG, PDF. Maksimal 5MB</small>
+                        <span class="form__error" id="pengaduanFileError"></span>
+                        
+                        <div id="filePreview" class="file-preview" style="display: none;">
+                            <div class="file-preview__header">
+                                <span class="file-preview__title">Preview File:</span>
+                                <button type="button" id="removeFileBtn" class="file-preview__remove" aria-label="Hapus file">×</button>
+                            </div>
+                            <div id="filePreviewContent" class="file-preview__content"></div>
+                        </div>
+                    </div>
+
+                    <div class="form__actions">
+                        <button type="submit" class="btn btn--primary">Kirim Pengaduan</button>
+                        <button type="button" id="saveDraftBtn" class="btn btn--secondary">Simpan Draft</button>
+                        <button type="reset" class="btn btn--tertiary">Reset</button>
+                    </div>
+                </form>
+
+                <div class="tracking-section">
+                    <h3 class="tracking-section__title">Lacak Status Pengaduan</h3>
+                    <div class="tracking-form">
+                        <input type="text" id="trackingInput" class="form__input" placeholder="Masukkan nomor pengaduan (CTR-YYYYMMDD-XXXX)">
+                        <button type="button" id="trackingBtn" class="btn btn--primary">Lacak</button>
+                    </div>
+                    <div id="trackingResult" class="tracking-result" style="display: none;"></div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+             <div class="footer__content">
+                <div class="footer__section">
+                    <h4 class="footer__title">Karang Taruna</h4>
+                    <p class="footer__text">Organisasi kepemudaan yang bergerak dalam pemberdayaan masyarakat dan pelayanan publik.</p>
+                </div>
+                <div class="footer__section">
+                    <h4 class="footer__title">Kontak</h4>
+                    <p class="footer__text">Email: info@karangtaruna.id<br>Telp: (021) 1234-5678<br>Alamat: Jl. Pemuda No. 123</p>
+                </div>
+                <div class="footer__section">
+                    <h4 class="footer__title">Jam Layanan</h4>
+                    <p class="footer__text">Senin - Jumat: 08.00 - 16.00<br>Sabtu: 08.00 - 12.00<br>Minggu: Tutup</p>
+                </div>
+            </div>
+            <div class="footer__bottom">
+                <p>&copy; 2025 Karang Taruna. Hak Cipta Dilindungi.</p>
+            </div>
+        </div>
+    </footer>
+
+    <div id="toast" class="toast" role="alert" aria-live="polite" aria-atomic="true"></div>
+    <div id="modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+        <div class="modal__overlay" id="modalOverlay"></div>
+        <div class="modal__content">
+            <div class="modal__header">
+                <h3 id="modalTitle" class="modal__title"></h3>
+                <button class="modal__close" id="modalClose" aria-label="Tutup modal">×</button>
+            </div>
+            <div id="modalBody" class="modal__body"></div>
+            <div id="modalFooter" class="modal__footer"></div>
+        </div>
+    </div>
+    
+    <script src="assets/script.js"></script>
+</body>
+</html>

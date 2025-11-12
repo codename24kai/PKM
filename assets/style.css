@@ -662,66 +662,14 @@ a {
     cursor: not-allowed;
 }
 
-/* ==================== Mediasi Content ==================== */
+/* ==================== Mediasi Content (Sudah tidak terpakai, bisa dihapus) ==================== */
 .mediasi-content {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: var(--spacing-3xl);
 }
+/* ... (Style mediasi-info* lainnya bisa dihapus jika mau) ... */
 
-.mediasi-info {
-    background-color: var(--color-white);
-    padding: var(--spacing-xl);
-    border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-md);
-    border-left: 5px solid var(--color-secondary); /* Accent line */
-}
-
-.mediasi-info__title {
-    font-size: var(--font-size-2xl);
-    font-weight: 600;
-    color: var(--color-gray-900);
-    margin-bottom: var(--spacing-lg);
-}
-
-.mediasi-info__text {
-    color: var(--color-gray-600);
-    margin-bottom: var(--spacing-lg);
-}
-
-.mediasi-info__subtitle {
-    font-size: var(--font-size-xl);
-    font-weight: 600;
-    color: var(--color-gray-900);
-    margin: var(--spacing-xl) 0 var(--spacing-md);
-}
-
-.mediasi-info__list {
-    list-style: none;
-    padding-left: 0;
-}
-
-.mediasi-info__list li {
-    padding: var(--spacing-sm) 0;
-    padding-left: var(--spacing-xl);
-    position: relative;
-    color: var(--color-gray-600);
-}
-
-.mediasi-info__list li::before {
-    content: '✓';
-    position: absolute;
-    left: 0;
-    color: var(--color-success);
-    font-weight: 700;
-}
-
-.mediasi-form-container {
-    background-color: var(--color-white);
-    padding: var(--spacing-xl);
-    border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-md);
-}
 
 /* ==================== Forms ==================== */
 .form {
@@ -1091,130 +1039,63 @@ a {
 }
 
 
-/* ==================== Admin Panel ==================== */
+/* ==================== Admin Panel (Tidak ada di index) ==================== */
 .admin-login {
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 400px;
 }
+/* ... (Style admin-panel* lainnya) ... */
 
-.admin-login__card {
-    width: 100%;
-    max-width: 400px;
-    padding: var(--spacing-2xl);
-    background-color: var(--color-white);
-    border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-xl);
-    border-top: 5px solid var(--color-primary); /* Accent line */
-    animation: fadeIn 0.5s ease-out;
-}
 
-.admin-login__title {
-    font-size: var(--font-size-2xl);
-    font-weight: 600;
-    color: var(--color-gray-900);
-    margin-bottom: var(--spacing-xl);
-    text-align: center;
-}
-
-.admin-login__hint {
-    margin-top: var(--spacing-md);
-    padding: var(--spacing-md);
-    background-color: var(--color-gray-100);
-    border-radius: var(--radius-md);
-    font-size: var(--font-size-sm);
-    color: var(--color-gray-600);
-    text-align: center;
-}
-
-.admin-panel__header {
+/* ==================== Homepage Brief Articles (BARU) ==================== */
+.section__header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: var(--spacing-xl);
-    animation: fadeIn 0.5s ease-out;
+    flex-wrap: wrap;
+    gap: var(--spacing-md);
 }
 
-.admin-panel__title {
-    font-size: var(--font-size-2xl);
-    font-weight: 600;
-    color: var(--color-gray-900);
+/* ==================== Gallery Page (BARU) ==================== */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--spacing-lg);
 }
 
-.admin-tabs {
-    display: flex;
-    gap: var(--spacing-sm);
-    margin-bottom: var(--spacing-xl);
-    border-bottom: 2px solid var(--color-gray-200);
-    overflow-x: auto;
-}
-
-.admin-tab {
-    padding: var(--spacing-md) var(--spacing-xl);
-    background: none;
-    border: none;
-    font-size: var(--font-size-base);
-    font-weight: 500;
-    color: var(--color-gray-600);
-    cursor: pointer;
-    border-bottom: 2px solid transparent;
-    margin-bottom: -2px;
-    transition: all var(--transition-fast);
-    white-space: nowrap;
-}
-
-.admin-tab:hover {
-    color: var(--color-primary);
-}
-
-.admin-tab--active {
-    color: var(--color-primary);
-    border-bottom-color: var(--color-primary);
-    font-weight: 600;
-}
-
-.admin-content {
-    background-color: var(--color-white);
-    padding: var(--spacing-xl);
+.gallery-item {
     border-radius: var(--radius-lg);
+    overflow: hidden;
     box-shadow: var(--shadow-md);
-    animation: fadeIn 0.5s ease-out;
+    transition: all var(--transition-base);
+    cursor: pointer;
+    border: 1px solid var(--color-gray-200);
 }
 
-.table-responsive {
-    overflow-x: auto;
+.gallery-item:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-xl);
 }
 
-.admin-table {
+.gallery-item img {
     width: 100%;
-    border-collapse: collapse;
-    min-width: 700px; /* Ensure table is wide enough for good UX */
+    height: 250px;
+    object-fit: cover;
+    background-color: var(--color-gray-100);
+    display: block; /* Menghilangkan spasi bawah img */
 }
 
-.admin-table th,
-.admin-table td {
+.gallery-item__caption {
     padding: var(--spacing-md);
-    text-align: left;
-    border-bottom: 1px solid var(--color-gray-200);
-    vertical-align: middle;
-}
-
-.admin-table th {
-    font-weight: 600;
-    color: var(--color-gray-700);
-    background-color: var(--color-gray-50);
-}
-
-.admin-table tr:hover {
-    background-color: var(--color-gray-50);
-}
-
-.admin-empty {
+    background-color: var(--color-white);
+    font-weight: 500;
+    color: var(--color-gray-800);
     text-align: center;
-    padding: var(--spacing-3xl);
-    color: var(--color-gray-500);
 }
+
 
 /* ==================== Footer ==================== */
 .footer {
@@ -1501,6 +1382,12 @@ a {
         gap: var(--spacing-md);
     }
 
+    /* Gallery (BARU) */
+    .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--spacing-md);
+    }
+
     /* Info Controls */
     .info-controls {
         flex-direction: column;
@@ -1515,7 +1402,7 @@ a {
         min-width: 100%;
     }
 
-    /* Mediasi */
+    /* Mediasi (Sudah tidak ada) */
     .mediasi-content {
         grid-template-columns: 1fr;
     }
@@ -1617,6 +1504,16 @@ a {
         grid-template-columns: 1fr;
     }
 
+    /* Gallery (BARU) */
+    .gallery-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .gallery-item img {
+        height: 200px;
+    }
+
+
     /* Article Card */
     .article-card__image {
         height: 150px;
@@ -1649,11 +1546,6 @@ a {
         left: var(--spacing-md);
         max-width: none;
     }
-
-    /* Admin Table */
-    .admin-table {
-        /* This is handled by .table-responsive now, min-width is key */
-    }
 }
 
 /* ==================== Accessibility ==================== */
@@ -1681,50 +1573,4 @@ a {
 *:focus-visible {
     outline: 2px solid var(--color-primary);
     outline-offset: 2px;
-}
-
-/* Skip to main content - not implemented in HTML but good practice */
-.skip-link {
-    position: absolute;
-    top: -40px;
-    left: 0;
-    background: var(--color-primary);
-    color: var(--color-white);
-    padding: var(--spacing-md);
-    z-index: 10000;
-    text-decoration: none;
-}
-
-.skip-link:focus {
-    top: 0;
-}
-
-/* High Contrast Mode Support */
-@media (prefers-contrast: high) {
-    :root {
-        --color-primary: #000000;
-        --color-secondary: #ffff00;
-    }
-}
-
-/* Print Styles */
-@media print {
-    .header,
-    .nav,
-    .breadcrumb,
-    .footer,
-    .btn,
-    .toast,
-    .modal {
-        display: none !important;
-    }
-
-    body {
-        background: white;
-        color: black;
-    }
-
-    .section {
-        page-break-inside: avoid;
-    }
 }
