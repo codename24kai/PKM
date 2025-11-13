@@ -10,13 +10,10 @@
     <link rel="stylesheet" href="dashboard admin.css">
 </head>
 <body>
-    <!-- Sidebar -->
     <aside class="sidebar" id="sidebar">
         <div class="sidebar-logo">
             <div class="sidebar-logo-icon">
-                <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
-                    <path d="M14 6L20 11V19L14 24L8 19V11L14 6Z" stroke="#A50104" stroke-width="2"/>
-                </svg>
+                <img src="/assets/img/logo-karang-taruna.svg">
             </div>
             <div class="sidebar-logo-text">
                 <h2>Karang Taruna</h2>
@@ -26,18 +23,15 @@
 
         <ul class="sidebar-menu">
             <li class="sidebar-menu-item">
-                <a href="#" class="sidebar-menu-link active">
+                <a href="dashboard admin.html" class="sidebar-menu-link active">
                     <svg class="sidebar-menu-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
-                        <rect x="3" y="3" width="6" height="6" rx="1"/>
-                        <rect x="11" y="3" width="6" height="6" rx="1"/>
-                        <rect x="3" y="11" width="6" height="6" rx="1"/>
-                        <rect x="11" y="11" width="6" height="6" rx="1"/>
+                        <rect x="3" y="3" width="6" height="6" rx="1"/><rect x="11" y="3" width="6" height="6" rx="1"/><rect x="3" y="11" width="6" height="6" rx="1"/><rect x="11" y="11" width="6" height="6" rx="1"/>
                     </svg>
                     Dashboard
                 </a>
             </li>
             <li class="sidebar-menu-item">
-                <a href="#" class="sidebar-menu-link">
+                <a href="pengaduan-admin.html" class="sidebar-menu-link">
                     <svg class="sidebar-menu-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
                         <path d="M3 6h14M3 10h14M3 14h14"/>
                     </svg>
@@ -45,15 +39,15 @@
                 </a>
             </li>
             <li class="sidebar-menu-item">
-                <a href="#" class="sidebar-menu-link">
-                    <svg class="sidebar-menu-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M10 3L16 7v6l-6 4-6-4V7l6-4z"/>
+                <a href="galeri-admin.html" class="sidebar-menu-link">
+                    <svg class="sidebar-menu-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/>
                     </svg>
-                    Mediasi
+                    Galeri
                 </a>
             </li>
             <li class="sidebar-menu-item">
-                <a href="#" class="sidebar-menu-link">
+                <a href="proposal.html" class="sidebar-menu-link">
                     <svg class="sidebar-menu-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
                         <path d="M7 3h6M5 6h10M3 9h14M3 12h14M5 15h10M7 18h6"/>
                     </svg>
@@ -61,29 +55,25 @@
                 </a>
             </li>
             <li class="sidebar-menu-item">
-                <a href="#" class="sidebar-menu-link">
+                <a href="artikel-admin.html" class="sidebar-menu-link">
                     <svg class="sidebar-menu-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M5 3h10a2 2 0 012 2v10a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2z"/>
-                        <path d="M3 8h14M8 3v14"/>
+                        <path d="M5 3h10a2 2 0 012 2v10a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2z"/><path d="M3 8h14M8 3v14"/>
                     </svg>
                     Artikel
                 </a>
             </li>
             <li class="sidebar-menu-item">
-                <a href="#" class="sidebar-menu-link">
+                <a href="pengguna.html" class="sidebar-menu-link">
                     <svg class="sidebar-menu-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
-                        <circle cx="10" cy="7" r="4"/>
-                        <path d="M3 18a7 7 0 0114 0"/>
+                        <circle cx="10" cy="7" r="4"/><path d="M3 18a7 7 0 0114 0"/>
                     </svg>
                     Pengguna
                 </a>
             </li>
             <li class="sidebar-menu-item">
-                <a href="#" class="sidebar-menu-link">
+                <a href="pengaturan.html" class="sidebar-menu-link">
                     <svg class="sidebar-menu-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
-                        <circle cx="10" cy="10" r="3"/>
-                        <path d="M17 10a7 7 0 11-14 0 7 7 0 0114 0z"/>
-                        <path d="M10 3v1m0 12v1m7-7h-1M4 10H3"/>
+                        <circle cx="10" cy="10" r="3"/><path d="M17 10a7 7 0 11-14 0 7 7 0 0114 0z"/><path d="M10 3v1m0 12v1m7-7h-1M4 10H3"/>
                     </svg>
                     Pengaturan
                 </a>
@@ -91,7 +81,7 @@
         </ul>
 
         <div class="sidebar-footer">
-            <a href="login.html" class="sidebar-menu-link">
+            <a href="../login/login admin.html" onclick="adminLogout()" class="sidebar-menu-link">
                 <svg class="sidebar-menu-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
                     <path d="M13 3h4a2 2 0 012 2v10a2 2 0 01-2 2h-4M8 16l-5-5 5-5M3 11h11"/>
                 </svg>
@@ -100,9 +90,7 @@
         </div>
     </aside>
 
-    <!-- Main Content -->
     <main class="main-content">
-        <!-- Topbar -->
         <div class="topbar">
             <div class="topbar-left">
                 <h1>Dashboard</h1>
@@ -125,256 +113,66 @@
             </div>
         </div>
 
-        <!-- Stats Cards -->
         <div class="stats-grid">
             <div class="stat-card primary">
                 <div class="stat-header">
-                    <div>
-                        <div class="stat-number">324</div>
-                        <div class="stat-label">Total Pengaduan</div>
-                    </div>
-                    <div class="stat-icon">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M9 12h6M9 16h6M9 8h6M7 3h10a2 2 0 012 2v14a2 2 0 01-2 2H7a2 2 0 01-2-2V5a2 2 0 012-2z"/>
-                        </svg>
-                    </div>
+                    <div><div class="stat-number">324</div><div class="stat-label">Total Pengaduan</div></div>
+                    <div class="stat-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12h6M9 16h6M9 8h6M7 3h10a2 2 0 012 2v14a2 2 0 01-2 2H7a2 2 0 01-2-2V5a2 2 0 012-2z"/></svg></div>
                 </div>
-                <div class="stat-trend up">
-                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M12 10l-4-4-4 4"/>
-                    </svg>
-                    12% dari bulan lalu
-                </div>
+                <div class="stat-trend up"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 10l-4-4-4 4"/></svg>12% dari bulan lalu</div>
             </div>
-
             <div class="stat-card secondary">
                 <div class="stat-header">
-                    <div>
-                        <div class="stat-number">89</div>
-                        <div class="stat-label">Mediasi Aktif</div>
-                    </div>
-                    <div class="stat-icon">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M12 5l6 4v6l-6 4-6-4v-6l6-4z"/>
-                        </svg>
-                    </div>
+                    <div><div class="stat-number">89</div><div class="stat-label">Galeri Aktif</div></div> <div class="stat-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div>
                 </div>
-                <div class="stat-trend up">
-                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M12 10l-4-4-4 4"/>
-                    </svg>
-                    8% dari bulan lalu
-                </div>
+                <div class="stat-trend up"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 10l-4-4-4 4"/></svg>8% dari bulan lalu</div>
             </div>
-
             <div class="stat-card success">
                 <div class="stat-header">
-                    <div>
-                        <div class="stat-number">52</div>
-                        <div class="stat-label">Proposal Pending</div>
-                    </div>
-                    <div class="stat-icon">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
-                            <path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/>
-                        </svg>
-                    </div>
+                    <div><div class="stat-number">52</div><div class="stat-label">Proposal Pending</div></div>
+                    <div class="stat-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/></svg></div>
                 </div>
-                <div class="stat-trend down">
-                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M12 6l-4 4-4-4"/>
-                    </svg>
-                    5% dari bulan lalu
-                </div>
+                <div class="stat-trend down"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 6l-4 4-4-4"/></svg>5% dari bulan lalu</div>
             </div>
-
             <div class="stat-card warning">
                 <div class="stat-header">
-                    <div>
-                        <div class="stat-number">28</div>
-                        <div class="stat-label">Butuh Perhatian</div>
-                    </div>
-                    <div class="stat-icon">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0zM12 9v4M12 17h.01"/>
-                        </svg>
-                    </div>
+                    <div><div class="stat-number">28</div><div class="stat-label">Butuh Perhatian</div></div>
+                    <div class="stat-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0zM12 9v4M12 17h.01"/></svg></div>
                 </div>
-                <div class="stat-trend up">
-                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M12 10l-4-4-4 4"/>
-                    </svg>
-                    15% dari bulan lalu
-                </div>
+                <div class="stat-trend up"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 10l-4-4-4 4"/></svg>15% dari bulan lalu</div>
             </div>
         </div>
 
-        <!-- Content Grid -->
         <div class="content-grid">
-            <!-- Recent Reports -->
             <div class="content-card">
-                <div class="content-card-header">
-                    <h3 class="content-card-title">Pengaduan Terbaru</h3>
-                    <a href="#" class="view-all-link">Lihat Semua →</a>
-                </div>
+                <div class="content-card-header"><h3 class="content-card-title">Pengaduan Terbaru</h3><a href="pengaduan.html" class="view-all-link">Lihat Semua →</a></div>
                 <table class="data-table">
-                    <thead>
-                        <tr>
-                            <th>No. Tiket</th>
-                            <th>Judul</th>
-                            <th>Kategori</th>
-                            <th>Status</th>
-                            <th>Tanggal</th>
-                        </tr>
-                    </thead>
+                    <thead><tr><th>No. Tiket</th><th>Judul</th><th>Kategori</th><th>Status</th><th>Tanggal</th></tr></thead>
                     <tbody>
-                        <tr>
-                            <td>CTR-20250112-0023</td>
-                            <td>Jalan Rusak di RT 05</td>
-                            <td>Infrastruktur</td>
-                            <td><span class="status-badge pending">Pending</span></td>
-                            <td>12 Nov 2025</td>
-                        </tr>
-                        <tr>
-                            <td>CTR-20250112-0022</td>
-                            <td>Sampah Menumpuk</td>
-                            <td>Lingkungan</td>
-                            <td><span class="status-badge process">Diproses</span></td>
-                            <td>12 Nov 2025</td>
-                        </tr>
-                        <tr>
-                            <td>CTR-20250111-0021</td>
-                            <td>Lampu Jalan Mati</td>
-                            <td>Infrastruktur</td>
-                            <td><span class="status-badge done">Selesai</span></td>
-                            <td>11 Nov 2025</td>
-                        </tr>
-                        <tr>
-                            <td>CTR-20250111-0020</td>
-                            <td>Kebisingan Malam Hari</td>
-                            <td>Sosial</td>
-                            <td><span class="status-badge process">Diproses</span></td>
-                            <td>11 Nov 2025</td>
-                        </tr>
-                        <tr>
-                            <td>CTR-20250110-0019</td>
-                            <td>Drainase Tersumbat</td>
-                            <td>Infrastruktur</td>
-                            <td><span class="status-badge rejected">Ditolak</span></td>
-                            <td>10 Nov 2025</td>
-                        </tr>
+                        <tr><td>CTR-20250112-0023</td><td>Jalan Rusak di RT 05</td><td>Infrastruktur</td><td><span class="status-badge pending">Pending</span></td><td>12 Nov 2025</td></tr>
+                        <tr><td>CTR-20250112-0022</td><td>Sampah Menumpuk</td><td>Lingkungan</td><td><span class="status-badge process">Diproses</span></td><td>12 Nov 2025</td></tr>
+                        <tr><td>CTR-20250111-0021</td><td>Lampu Jalan Mati</td><td>Infrastruktur</td><td><span class="status-badge done">Selesai</span></td><td>11 Nov 2025</td></tr>
                     </tbody>
                 </table>
             </div>
-
-            <!-- Recent Activity -->
             <div class="content-card">
-                <div class="content-card-header">
-                    <h3 class="content-card-title">Aktivitas Terkini</h3>
-                </div>
+                <div class="content-card-header"><h3 class="content-card-title">Aktivitas Terkini</h3></div>
                 <ul class="activity-list">
                     <li class="activity-item">
-                        <div class="activity-icon pengaduan">
-                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M16 2H4a2 2 0 00-2 2v12a2 2 0 002 2h12a2 2 0 002-2V4a2 2 0 00-2-2z"/>
-                            </svg>
-                        </div>
-                        <div class="activity-content">
-                            <div class="activity-title">Pengaduan Baru</div>
-                            <div class="activity-desc">CTR-20250112-0023 - Jalan Rusak di RT 05</div>
-                            <div class="activity-time">5 menit yang lalu</div>
-                        </div>
+                        <div class="activity-icon pengaduan"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 2H4a2 2 0 00-2 2v12a2 2 0 002 2h12a2 2 0 002-2V4a2 2 0 00-2-2z"/></svg></div>
+                        <div class="activity-content"><div class="activity-title">Pengaduan Baru</div><div class="activity-desc">CTR-20250112-0023 - Jalan Rusak di RT 05</div><div class="activity-time">5 menit yang lalu</div></div>
                     </li>
                     <li class="activity-item">
-                        <div class="activity-icon mediasi">
-                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M10 3l6 4v6l-6 4-6-4V7l6-4z"/>
-                            </svg>
-                        </div>
-                        <div class="activity-content">
-                            <div class="activity-title">Mediasi Diselesaikan</div>
-                            <div class="activity-desc">MED-20250110-0015 berhasil dimediasi</div>
-                            <div class="activity-time">1 jam yang lalu</div>
-                        </div>
-                    </li>
-                    <li class="activity-item">
-                        <div class="activity-icon proposal">
-                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M12 2H4a2 2 0 00-2 2v12a2 2 0 002 2h8l6-6V4a2 2 0 00-2-2z"/>
-                            </svg>
-                        </div>
-                        <div class="activity-content">
-                            <div class="activity-title">Proposal Disetujui</div>
-                            <div class="activity-desc">PRO-20250109-0012 telah disetujui</div>
-                            <div class="activity-time">2 jam yang lalu</div>
-                        </div>
-                    </li>
-                    <li class="activity-item">
-                        <div class="activity-icon pengaduan">
-                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M10 18a8 8 0 100-16 8 8 0 000 16zM10 6v4M10 14h.01"/>
-                            </svg>
-                        </div>
-                        <div class="activity-content">
-                            <div class="activity-title">Pengaduan Diupdate</div>
-                            <div class="activity-desc">Status CTR-20250112-0022 diubah ke "Diproses"</div>
-                            <div class="activity-time">3 jam yang lalu</div>
-                        </div>
-                    </li>
-                    <li class="activity-item">
-                        <div class="activity-icon proposal">
-                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
-                                <circle cx="10" cy="10" r="8"/>
-                                <path d="M10 6v4l3 2"/>
-                            </svg>
-                        </div>
-                        <div class="activity-content">
-                            <div class="activity-title">Proposal Pending Review</div>
-                            <div class="activity-desc">PRO-20250112-0018 menunggu persetujuan</div>
-                            <div class="activity-time">5 jam yang lalu</div>
-                        </div>
+                        <div class="activity-icon mediasi"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 3l6 4v6l-6 4-6-4V7l6-4z"/></svg></div>
+                        <div class="activity-content"><div class="activity-title">Galeri Diupdate</div><div class="activity-desc">Foto "Kerja Bakti" ditambahkan</div><div class="activity-time">1 jam yang lalu</div></div>
                     </li>
                 </ul>
             </div>
         </div>
-
-        <!-- Additional Stats -->
-        <div class="content-card">
-            <div class="content-card-header">
-                <h3 class="content-card-title">Statistik Bulan Ini</h3>
-                <div style="display: flex; gap: 8px;">
-                    <button class="btn btn-secondary">Bulan Ini</button>
-                    <button class="btn btn-secondary">Tahun Ini</button>
-                </div>
-            </div>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-top: 20px;">
-                <div style="padding: 20px; background: var(--bg-light); border-radius: 12px; text-align: center;">
-                    <div style="font-size: 32px; font-weight: 700; color: var(--primary-color); margin-bottom: 8px;">87</div>
-                    <div style="font-size: 14px; color: var(--text-gray);">Pengaduan Masuk</div>
-                </div>
-                <div style="padding: 20px; background: var(--bg-light); border-radius: 12px; text-align: center;">
-                    <div style="font-size: 32px; font-weight: 700; color: var(--secondary-color); margin-bottom: 8px;">92%</div>
-                    <div style="font-size: 14px; color: var(--text-gray);">Tingkat Penyelesaian</div>
-                </div>
-                <div style="padding: 20px; background: var(--bg-light); border-radius: 12px; text-align: center;">
-                    <div style="font-size: 32px; font-weight: 700; color: #10b981; margin-bottom: 8px;">3.2</div>
-                    <div style="font-size: 14px; color: var(--text-gray);">Waktu Respon (hari)</div>
-                </div>
-                <div style="padding: 20px; background: var(--bg-light); border-radius: 12px; text-align: center;">
-                    <div style="font-size: 32px; font-weight: 700; color: #f59e0b; margin-bottom: 8px;">4.8</div>
-                    <div style="font-size: 14px; color: var(--text-gray);">Rating Kepuasan</div>
-                </div>
-            </div>
-        </div>
     </main>
 
-    <!-- Mobile Menu Toggle -->
     <button class="mobile-menu-toggle" id="mobileMenuToggle">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <line x1="3" y1="12" x2="21" y2="12"></line>
-            <line x1="3" y1="6" x2="21" y2="6"></line>
-            <line x1="3" y1="18" x2="21" y2="18"></line>
-        </svg>
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
     </button>
 
     <script src="dashboard admin.js"></script>

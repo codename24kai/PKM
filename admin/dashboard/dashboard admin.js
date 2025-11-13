@@ -1,4 +1,6 @@
-// Mobile menu toggle
+// File: admin/dashboard/dashboard admin.js (TIMPA FILE LAMA)
+
+// Mobile menu toggle (FITUR LAMA AMAN)
 const sidebar = document.getElementById('sidebar');
 const mobileMenuToggle = document.getElementById('mobileMenuToggle');
 
@@ -6,7 +8,7 @@ mobileMenuToggle.addEventListener('click', function() {
     sidebar.classList.toggle('active');
 });
 
-// Close sidebar when clicking outside on mobile
+// Close sidebar when clicking outside on mobile (FITUR LAMA AMAN)
 document.addEventListener('click', function(event) {
     if (window.innerWidth <= 768) {
         if (!sidebar.contains(event.target) && !mobileMenuToggle.contains(event.target)) {
@@ -15,15 +17,19 @@ document.addEventListener('click', function(event) {
     }
 });
 
-// Highlight active menu based on current page
-const currentPage = window.location.hash || '#dashboard';
+// === FIX UNTUK HIGHLIGHT MENU ===
+// Logic lama pakai hash (#), gue ganti pakai pathname (nama file)
+const currentPage = window.location.pathname.split('/').pop();
 document.querySelectorAll('.sidebar-menu-link').forEach(link => {
-    if (link.getAttribute('href') === currentPage) {
+    const linkPage = link.getAttribute('href').split('/').pop();
+    if (linkPage === currentPage) {
         link.classList.add('active');
+    } else {
+        link.classList.remove('active'); // Hapus active dari yang lain
     }
 });
 
-// Simple animation for stats numbers on load
+// Simple animation for stats numbers on load (FITUR LAMA AMAN)
 window.addEventListener('load', function() {
     const statNumbers = document.querySelectorAll('.stat-number');
     statNumbers.forEach(stat => {
@@ -45,53 +51,46 @@ window.addEventListener('load', function() {
     });
 });
 
-// Table row click handler
+// Table row click handler (FITUR LAMA AMAN)
 document.querySelectorAll('.data-table tbody tr').forEach(row => {
     row.style.cursor = 'pointer';
     row.addEventListener('click', function() {
         const ticketNumber = this.cells[0].textContent;
         alert('Membuka detail untuk: ' + ticketNumber);
-        // In production, this would navigate to detail page
-        // window.location.href = 'detail.html?ticket=' + ticketNumber;
     });
 });
 
-// Notification click handler
+// Notification click handler (FITUR LAMA AMAN)
 document.querySelector('.topbar-notifications').addEventListener('click', function() {
-    alert('Membuka notifikasi...\n\n12 notifikasi baru:\n- 5 Pengaduan baru\n- 3 Mediasi pending\n- 4 Proposal untuk review');
-    // In production, this would open a notification panel
+    alert('Membuka notifikasi...\n\n12 notifikasi baru:\n- 5 Pengaduan baru\n- 3 Galeri pending\n- 4 Proposal untuk review');
 });
 
-// User menu click handler
+// User menu click handler (=== FIX LINK LOGOUT ===)
 document.querySelector('.topbar-user').addEventListener('click', function() {
     const userMenu = confirm('Menu Pengguna:\n\nKlik OK untuk Logout\nKlik Cancel untuk tutup');
     if (userMenu) {
-        window.location.href = 'login.html';
+        adminLogout(); // Panggil fungsi logout yang benar
     }
 });
 
-// Sidebar menu click handler (for demo purposes)
+// Sidebar menu click handler (FITUR LAMA AMAN)
+// Ini gak bakal jalan di link yang udah ada href-nya, jadi aman.
 document.querySelectorAll('.sidebar-menu-link').forEach(link => {
     link.addEventListener('click', function(e) {
         if (this.getAttribute('href') === '#') {
             e.preventDefault();
-            // Remove active class from all links
             document.querySelectorAll('.sidebar-menu-link').forEach(l => l.classList.remove('active'));
-            // Add active class to clicked link
             this.classList.add('active');
-            
-            // Close mobile menu if open
             if (window.innerWidth <= 768) {
                 sidebar.classList.remove('active');
             }
-            
             alert('Navigasi ke: ' + this.textContent.trim());
         }
     });
 });
 
 
-// Logout function
+// Logout function (FITUR LAMA AMAN)
 function adminLogout() {
   localStorage.removeItem('admin_logged_in');
   window.location.href = '../login/login admin.html';

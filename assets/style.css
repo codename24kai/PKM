@@ -162,8 +162,8 @@ a {
 }
 
 .header__logo img {
-    width: 200px;
-    height: 200px;
+    width: 48px;
+    height: 48px;
     object-fit: contain;
     transition: transform var(--transition-fast);
 }

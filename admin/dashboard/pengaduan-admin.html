@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - Karang Taruna</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="dashboard admin.css">
+    
+    <style>
+        .btn-primary { 
+            background: #A50104; color: white; padding: 10px 20px; 
+            border-radius: 8px; border: none; cursor: pointer; font-weight: 600; 
+        }
+        .btn-action { 
+            padding: 6px 12px; border-radius: 6px; border: none; 
+            cursor: pointer; color: white; font-size: 12px; margin-right: 5px; 
+        }
+        .btn-edit { background: #f59e0b; }
+        .btn-delete { background: #ef4444; }
+        
+        /* Modal Styles */
+        .modal-overlay { 
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+            background: rgba(0,0,0,0.5); z-index: 2000; 
+            align-items: center; justify-content: center; 
+        }
+        .modal-box { 
+            background: white; padding: 30px; border-radius: 12px; 
+            width: 100%; max-width: 500px; animation: slideUp 0.3s ease; 
+        }
+        .form-group { margin-bottom: 16px; }
+        .form-group label { display: block; margin-bottom: 8px; font-weight: 600; font-size: 14px; }
+        .form-input { 
+            width: 100%; padding: 10px; border: 1px solid #e0e0e0; 
+            border-radius: 8px; font-family: inherit; font-size: 1rem;
+            box-sizing: border-box; /* Biar padding gak ngerusak layout */
+        }
+        select.form-input { height: 40px; } /* Fix tinggi select box */
+        textarea.form-input { min-height: 80px; }
+        .modal-footer { 
+            display: flex; justify-content: flex-end; gap: 10px; margin-top: 20px; 
+        }
+        .btn-secondary { 
+            background: #e0e0e0; color: #333; border: none; 
+            padding: 10px 20px; border-radius: 8px; cursor: pointer; 
+        }
+        
+        @keyframes slideUp { 
+            from { transform: translateY(20px); opacity: 0; } 
+            to { transform: translateY(0); opacity: 1; } 
+        }
+    </style>
+</head>
+
+<body data-page="pengaduan-admin">
+
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-logo">
+            <div class="sidebar-logo-icon">
+                <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><path d="M14 6L20 11V19L14 24L8 19V11L14 6Z" stroke="#A50104" stroke-width="2"/></svg>
+            </div>
+            <div class="sidebar-logo-text"><h2>Karang Taruna</h2><p>Admin Portal</p></div>
+        </div>
+        <ul class="sidebar-menu">
+            <li class="sidebar-menu-item"><a href="dashboard admin.html" class="sidebar-menu-link">Dashboard</a></li>
+            <li class="sidebar-menu-item"><a href="pengaduan-admin.html" class="sidebar-menu-link">Pengaduan</a></li>
+            <li class="sidebar-menu-item"><a href="galeri-admin.html" class="sidebar-menu-link">Galeri</a></li>
+            <li class="sidebar-menu-item"><a href="proposal.html" class="sidebar-menu-link">Proposal</a></li>
+            <li class="sidebar-menu-item"><a href="artikel-admin.html" class="sidebar-menu-link">Artikel</a></li>
+            <li class="sidebar-menu-item"><a href="pengguna.html" class="sidebar-menu-link">Pengguna</a></li>
+            <li class="sidebar-menu-item"><a href="pengaturan.html" class="sidebar-menu-link">Pengaturan</a></li>
+        </ul>
+        <div class="sidebar-footer">
+            <a href="../login/login admin.html" onclick="adminLogout()" class="sidebar-menu-link">
+                <svg class="sidebar-menu-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 3h4a2 2 0 012 2v10a2 2 0 01-2 2h-4M8 16l-5-5 5-5M3 11h11"/></svg>
+                Logout
+            </a>
+        </div>
+    </aside>
+
+    <main class="main-content">
+        <div class="topbar">
+            <div class="topbar-left"><h1 id="pageTitle">Manajemen Data</h1></div>
+            <div class="topbar-right"><div class="topbar-user"><div class="user-avatar">AD</div><div class="user-info"><div class="user-name">Admin</div></div></div></div>
+        </div>
+
+        <div class="content-card">
+            <div class="content-card-header">
+                <h3 class="content-card-title">Daftar Data</h3>
+                <button class="btn-primary" id="btnAdd" onclick="openModal()">+ Tambah Baru</button>
+            </div>
+            
+            <div style="overflow-x: auto;">
+                <table class="data-table">
+                    <thead>
+                        <tr id="tableHeaders">
+                            </tr>
+                    </thead>
+                    <tbody id="tableBody">
+                        </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+    <div class="modal-overlay" id="crudModal">
+        <div class="modal-box">
+            <h2 id="modalTitle" style="margin-bottom: 20px;">Form Data</h2>
+            <form id="crudForm">
+                <div id="formInputs">
+                    </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn-secondary" onclick="closeModal()">Batal</button>
+                    <button type="submit" class="btn-primary">Simpan</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <button class="mobile-menu-toggle" id="mobileMenuToggle">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
+
+    <script src="admin-crud.js"></script> <script src="dashboard admin.js"></script> <script>
+        function adminLogout() {
+          localStorage.removeItem('admin_logged_in');
+          window.location.href = '../login/login admin.html';
+        }
+    </script>
+</body>
+</html>
