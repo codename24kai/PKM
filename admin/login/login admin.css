@@ -152,6 +152,23 @@ body {
     font-size: 14px;
 }
 
+/* File: admin/login/login admin.css */
+
+/* Styling Dropdown Role */
+select.form-input {
+    background-color: white;
+    cursor: pointer;
+}
+
+select.form-input:hover {
+    border-color: var(--primary-color);
+}
+
+/* Biar opsi di dalemnya rapi */
+select.form-input option {
+    padding: 10px;
+}
+
 .input-wrapper {
     position: relative;
 }

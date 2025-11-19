@@ -252,6 +252,10 @@ body {
     font-size: 12px;
 }
 
+.user-role{
+    font-weight: 700;
+}
+
 /* === 5. STATS CARDS (Interactive) === */
 .stats-grid {
     display: grid;
@@ -501,28 +505,30 @@ body {
     background: var(--white);
     padding: 32px;
     border-radius: 20px;
-    
-    /* === UPDATE BAGIAN INI (BIAR KONSISTEN) === */
-    width: 800px; /* Kita kunci lebarnya fix 800px (bukan max-width doang) */
-    max-width: 95%; /* Biar aman di HP */
-    
-    height: 85vh; /* Kita kunci tingginya 85% dari layar */
-    max-height: 85vh; 
-    
-    display: flex; /* Pake flex biar footer diem di bawah */
-    flex-direction: column;
-    /* ========================================== */
-
     box-shadow: var(--shadow-xl);
     animation: slideUpModal 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     transform-origin: bottom;
+    
+    /* Default: Auto (Biar fleksibel) */
+    width: auto;
+    height: auto;
+}
+
+#crudModal .modal-box { 
+    width: 800px;        /* Lebar mantap */
+    max-width: 95%;      /* Aman di HP */
+    height: 85vh;        /* Tinggi fix biar footer diem */
+    max-height: 85vh;
+    
+    display: flex;       /* Flexbox buat ngatur footer */
+    flex-direction: column;
 }
 
 /* Tambahin style ini biar form-nya yang bisa discroll, bukan seluruh modal */
-.modal-box form {
-    flex: 1; /* Ambil sisa ruang */
-    overflow-y: auto; /* Scroll di sini */
-    padding-right: 10px; /* Kasih jarak dikit buat scrollbar */
+#crudModal .modal-box form {
+    flex: 1;
+    overflow-y: auto;
+    padding-right: 10px;
 }
 
 /* Biar footer tombol selalu di bawah */
@@ -652,21 +658,24 @@ body {
    tapi kita tambahin styling khusus buat box logout */
 
 .logout-box {
-    max-width: 400px; /* Lebih kecil dari modal form */
-    text-align: center; /* Teks di tengah */
+    width: 420px !important; /* Paksa jadi kecil */
+    max-width: 90%;
+    height: auto !important; /* Tinggi ngikutin isi teks */
+    display: block;          /* Gak perlu flex column */
+    text-align: center;      /* Teks di tengah */
     padding: 40px 30px;
 }
 
 .logout-icon {
     width: 80px;
     height: 80px;
-    background: #fee2e2; /* Merah muda banget */
-    color: #ef4444; /* Merah */
+    background: #fee2e2;
+    color: #ef4444;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 0 auto 20px auto; /* Posisi tengah */
+    margin: 0 auto 20px auto;
     animation: popIn 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -683,29 +692,38 @@ body {
 }
 
 .logout-footer {
-    justify-content: center; /* Tombol di tengah */
+    justify-content: center;
     gap: 16px;
     margin-top: 0;
+    border-top: none; /* Hapus garis pemisah di modal kecil */
+    padding-top: 0;
 }
 
 .logout-footer button {
-    min-width: 120px; /* Tombolnya sama lebar */
+    min-width: 120px;
 }
 
-/* === STYLING MODAL PROFILE === */
-.profile-box {
-    max-width: 400px;
-    padding: 0; /* Kita atur padding di dalem children-nya */
-    overflow: hidden;
+/* === STYLING KHUSUS PROFILE CARD (Updated) === */
+
+/* 1. Container Box */
+#profileModal .modal-box {
+    width: 380px !important; /* Ukuran pas, gak kegedean */
+    max-width: 90%;
+    height: auto !important; /* Tinggi ngikutin isi */
+    padding: 0; /* Reset padding biar header mentok ke pinggir */
+    overflow: hidden; /* Biar sudut header ikut melengkung */
+    display: block;
 }
 
+/* 2. Header Merah */
 .profile-header {
     background: linear-gradient(135deg, var(--primary-color), var(--dark-red));
-    padding: 30px;
+    padding: 40px 20px 30px;
     text-align: center;
-    color: white;
+    color: var(--white);
 }
 
+/* 3. Avatar */
 .profile-avatar-lg {
     width: 80px;
     height: 80px;
@@ -717,32 +735,71 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 0 auto 16px auto;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    margin: 0 auto 15px auto;
+    border: 4px solid rgba(255,255,255,0.3); /* Efek border transparan */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
 }
 
-.profile-header h3 { font-size: 18px; margin-bottom: 4px; }
-.profile-role { font-size: 12px; opacity: 0.8; letter-spacing: 1px; text-transform: uppercase; }
+.profile-header h3 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 700;
+}
 
-.profile-details { padding: 24px; }
+.profile-role {
+    margin-top: 5px;
+    font-size: 12px;
+    opacity: 0.9;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    background: rgba(0,0,0,0.2);
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 20px;
+}
+
+/* 4. Isi Data */
+.profile-details {
+    padding: 25px;
+}
 
 .detail-item {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 12px 0;
-    border-bottom: 1px solid var(--border);
+    border-bottom: 1px solid #f1f5f9;
     font-size: 14px;
 }
-.detail-item:last-child { border-bottom: none; }
 
-.detail-item .label { color: var(--text-gray); font-weight: 500; }
-.detail-item .value { color: var(--text-dark); font-weight: 600; }
+.detail-item:last-child {
+    border-bottom: none;
+}
 
+.detail-item .label {
+    color: var(--text-gray);
+    font-weight: 500;
+}
+
+.detail-item .value {
+    color: var(--text-dark);
+    font-weight: 600;
+}
+
+/* 5. Footer Tombol */
 .profile-footer {
-    padding: 0 24px 24px 24px;
-    justify-content: space-between; /* Tombol kiri kanan */
+    background-color: #f8fafc;
+    padding: 20px 25px;
+    display: flex;
+    justify-content: space-between; /* Tombol Kiri Kanan */
+    align-items: center;
+    border-top: 1px solid var(--border);
     margin-top: 0;
+}
+
+.profile-footer button {
+    font-size: 13px;
+    padding: 8px 16px;
 }
 
 /* === FILE UPLOAD STYLE (Mirip Pengaduan) === */
@@ -828,11 +885,13 @@ body {
 
 /* === STYLING TOMBOL "LIHAT SEMUA" === */
 .view-all-link {
-    display: block; /* Biar ngisi lebar atau bisa diatur marginnya */
-    width: 100%;    /* Full width biar gampang diklik di HP */
-    text-align: center;
-    padding: 12px 20px;
-    margin-top: 20px;
+    display: inline-flex; /* Ganti dari block ke inline-flex */
+    width: auto;          /* Hapus width: 100% */
+    min-width: 140px;     /* Kasih lebar minimal biar enak dilihat */
+    justify-content: center;
+    align-items: center;
+    padding: 8px 16px;    /* Padding lebih santai */
+    margin-top: 16px;
     
     /* Styling Tombol */
     background-color: transparent;

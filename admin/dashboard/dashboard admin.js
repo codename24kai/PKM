@@ -1,6 +1,6 @@
 // File: admin/dashboard/dashboard admin.js
 
-// === BAGIAN 1: FITUR UI DASAR (LAMA & AMAN) ===
+// === BAGIAN 1: FITUR UI DASAR ===
 
 // Mobile menu toggle
 const sidebar = document.getElementById('sidebar');
@@ -57,25 +57,13 @@ window.addEventListener('load', function() {
     });
 });
 
-// Table row click handler
+// Table row click handler (Tanpa Alert)
 document.querySelectorAll('.data-table tbody tr').forEach(row => {
     row.style.cursor = 'pointer';
-    row.addEventListener('click', function() {
-        const ticketNumber = this.cells[0].textContent;
-        // alert('Membuka detail untuk: ' + ticketNumber); // Opsional: disable alert ini kalau ganggu
-    });
+    // Alert lama dihapus biar gak ganggu
 });
 
-// Notification click handler
-const notifBtn = document.querySelector('.topbar-notifications');
-if (notifBtn) {
-    notifBtn.addEventListener('click', function() {
-        alert('Membuka notifikasi...\n\n12 notifikasi baru:\n- 5 Pengaduan baru\n- 3 Galeri pending\n- 4 Proposal untuk review');
-    });
-}
-
-
-// === BAGIAN 2: LOGIC PROFILE & LOGOUT (UPDATE BARU) ===
+// === BAGIAN 2: LOGIC PROFILE & LOGOUT ===
 
 // 1. Update Event Listener Tombol Profil (User Avatar)
 const userProfileBtn = document.querySelector('.topbar-user');
@@ -83,7 +71,7 @@ if (userProfileBtn) {
     const newBtn = userProfileBtn.cloneNode(true);
     userProfileBtn.parentNode.replaceChild(newBtn, userProfileBtn);
 
-    // SEKARANG MANGGIL OPEN PROFILE DULU
+    // MANGGIL OPEN PROFILE DULU
     newBtn.addEventListener('click', function() {
         openProfileModal();
     });
@@ -105,10 +93,10 @@ function triggerLogoutFromProfile() {
     closeProfileModal(); // Tutup dulu profilnya
     setTimeout(() => {
         openLogoutModal(); // Baru buka konfirmasi logout
-    }, 200); // Delay dikit biar animasinya enak
+    }, 200);
 }
 
-// --- LOGIC LOGOUT CONFIRMATION (Sama kayak sebelumnya) ---
+// --- LOGIC LOGOUT CONFIRMATION ---
 function openLogoutModal(e) {
     if(e) e.preventDefault();
     const modal = document.getElementById('logoutModal');
@@ -129,7 +117,7 @@ function confirmLogout() {
     }, 500);
 }
 
-// Tutup modal kalau klik overlay (Berlaku buat Logout & Profile)
+// Tutup modal kalau klik overlay
 window.addEventListener('click', function(e) {
     const logoutModal = document.getElementById('logoutModal');
     const profileModal = document.getElementById('profileModal');
@@ -152,9 +140,9 @@ document.querySelectorAll('.sidebar-menu-link').forEach(link => {
     });
 });
 
-// === DASHBOARD LOGIC UPDATE ===
+// === DASHBOARD LOGIC UPDATE (CAROUSEL & NOTIFIKASI) ===
 
-// 1. Helper: Ambil Data dari LocalStorage (Sama kayak admin-crud.js)
+// 1. Helper: Ambil Data dari LocalStorage
 function getDbData(key) {
     const data = localStorage.getItem(key);
     return data ? JSON.parse(data) : [];
@@ -253,41 +241,47 @@ const titles = ['Pengaduan Terbaru', 'Proposal Terbaru', 'Galeri Terbaru', 'Arti
 let slideInterval;
 
 function showSlide(index) {
-    // Reset semua slide & dot
     document.querySelectorAll('.slide-item').forEach(el => el.classList.remove('active'));
     document.querySelectorAll('.dot').forEach(el => el.classList.remove('active'));
     
-    // Aktifkan yang dipilih
-    document.getElementById(slides[index]).classList.add('active');
-    document.querySelectorAll('.dot')[index].classList.add('active');
-    document.getElementById('sliderTitle').textContent = titles[index];
+    const slide = document.getElementById(slides[index]);
+    if(slide) slide.classList.add('active');
+    
+    if(document.querySelectorAll('.dot')[index]) {
+        document.querySelectorAll('.dot')[index].classList.add('active');
+    }
+    
+    const titleEl = document.getElementById('sliderTitle');
+    if(titleEl) titleEl.textContent = titles[index];
+    
     currentSlide = index;
 }
 
 function setSlide(index) {
-    clearInterval(slideInterval); // Stop auto roll kalau diklik manual
+    clearInterval(slideInterval);
     showSlide(index);
-    startAutoSlide(); // Start lagi
+    startAutoSlide();
 }
 
 function startAutoSlide() {
     slideInterval = setInterval(() => {
         let next = (currentSlide + 1) % slides.length;
         showSlide(next);
-    }, 5000); // Ganti tiap 5 detik
+    }, 5000);
 }
 
 
-// === LOGIC NOTIFIKASI ===
+// === LOGIC NOTIFIKASI (TANPA ALERT) ===
 function toggleNotifications(e) {
     e.stopPropagation();
     const dropdown = document.getElementById('notificationDropdown');
-    dropdown.classList.toggle('show');
+    if (dropdown) dropdown.classList.toggle('show');
 }
 
 function clearNotifs() {
     document.querySelectorAll('.notif-item').forEach(el => el.classList.remove('unread'));
-    document.getElementById('notifCount').style.display = 'none';
+    const count = document.getElementById('notifCount');
+    if(count) count.style.display = 'none';
 }
 
 // Close dropdown kalau klik di luar
@@ -304,7 +298,7 @@ document.addEventListener('DOMContentLoaded', () => {
     startAutoSlide();
 });
 
-// Fallback Logout Function (Jaga-jaga kalau ada link lama)
+// Fallback Logout Function
 function adminLogout() {
   openLogoutModal();
 }

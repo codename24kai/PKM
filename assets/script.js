@@ -725,10 +725,51 @@ form.addEventListener('submit', async e => {
     });
 
     document.getElementById('statusBtn')?.addEventListener('click', trackPengajuanStatus);
+    
+    // Di dalam function initPengajuanForm() ...
+    
+    // LOGIKA BARU: DOWNLOAD TEMPLATE
     document.getElementById('downloadTemplateBtn')?.addEventListener('click', e => {
         e.preventDefault();
-        showToast('Download template dimulai...', 'info');
+        
+        // HTML untuk isi Modal
+        const templateMenu = `
+            <div class="template-list">
+                <a href="assets/docs/TEMPLATE PROPOSAL SEKULIR.docx" download class="template-item">
+                    <div class="template-icon">📝</div>
+                    <div class="template-info">
+                        <h4>Proposal Kegiatan</h4>
+                        <p>Format lengkap untuk acara HUT RI & kegiatan warga.</p>
+                    </div>
+                </a>
+
+                <a href="assets/docs/Surat Peminjaman Barang.docx" download class="template-item">
+                    <div class="template-icon">📦</div>
+                    <div class="template-info">
+                        <h4>Surat Peminjaman Barang</h4>
+                        <p>Format surat untuk meminjam inventaris RT/RW.</p>
+                    </div>
+                </a>
+
+                <a href="assets/docs/Surat Permohonan Dana.docx" download class="template-item">
+                    <div class="template-icon">💰</div>
+                    <div class="template-info">
+                        <h4>Surat Permohonan Dana</h4>
+                        <p>Format pengajuan dana bantuan ke donatur.</p>
+                    </div>
+                </a>
+            </div>
+            <div style="margin-top: 20px; font-size: 12px; color: #666; text-align: center;">
+                *Klik salah satu untuk mengunduh file .docx
+            </div>
+        `;
+
+        // Panggil Modal
+        showModal('Pilih Template Dokumen', templateMenu, [
+            { text: 'Tutup', className: 'btn btn--tertiary', onClick: closeModal }
+        ]);
     });
+    
 }
 
 function showPengajuanConfirmation(data) {

@@ -34,7 +34,6 @@ const SCHEMAS = {
         fields: [
             { name: 'tanggal', label: 'Tanggal Masuk', type: 'text', readOnly: true },
             { name: 'pelapor', label: 'Nama Pelapor', type: 'text', readOnly: true },
-            // UPDATE: Tambah field bukti (Read Only)
             { name: 'bukti', label: 'Bukti Lampiran (Foto)', type: 'file', readOnly: true },
             { name: 'judul', label: 'Judul Pengaduan', type: 'text', readOnly: true },
             { name: 'deskripsi', label: 'Isi Laporan', type: 'textarea', readOnly: true },
@@ -51,7 +50,6 @@ const SCHEMAS = {
         fields: [
             { name: 'tanggal', label: 'Tanggal Pengajuan', type: 'text', readOnly: true },
             { name: 'pic', label: 'Penanggung Jawab', type: 'text', readOnly: true },
-            // UPDATE: Tambah field dokumen (Read Only)
             { name: 'dokumen', label: 'File Proposal (PDF)', type: 'file', readOnly: true },
             { name: 'judul', label: 'Judul Proposal', type: 'text', readOnly: true },
             { name: 'deskripsi', label: 'Ringkasan', type: 'textarea', readOnly: true },
@@ -92,11 +90,9 @@ function initDummyData(key, data) {
 initDummyData('db_galeri', [
     { image: 'https://via.placeholder.com/150', caption: 'Kerja Bakti RT 05', date: '2025-01-12' }
 ]);
-// UPDATE DUMMY PENGADUAN (Ada Bukti Foto)
 initDummyData('db_pengaduan', [
     { id: 'CTR-001', tanggal: '2025-11-10', pelapor: 'Budi Santoso', judul: 'Jalan Berlubang', deskripsi: 'Lubang besar di depan pos kamling.', lokasi: 'RT 02', status: 'Pending', bukti: 'https://via.placeholder.com/300x200?text=FOTO+BUKTI+JALAN' }
 ]);
-// UPDATE DUMMY PROPOSAL (Ada File PDF Dummy)
 initDummyData('db_proposal', [
     { id: 'PRO-001', tanggal: '2025-11-12', pic: 'Ahmad Dani', judul: 'Lomba 17an', deskripsi: 'Mohon dana lomba.', anggaran: 'Rp 5.000.000', status: 'Menunggu', dokumen: 'dummy-proposal.pdf' }
 ]);
@@ -106,7 +102,6 @@ initDummyData('db_artikel', [
 initDummyData('db_pengaturan', [
     { setting: 'Nama Website', value: 'Portal Karang Taruna' }
 ]);
-
 
 // === LOGIC UTAMA ===
 const pageId = document.body.dataset.page;
@@ -181,7 +176,7 @@ function loadTable() {
     });
 }
 
-// === RENDER FORM (UPDATE: Support File Preview & ReadOnly File) ===
+// === RENDER FORM ===
 function renderForm() {
     const container = document.getElementById('formInputs');
     container.innerHTML = config.fields.map(field => {
@@ -189,12 +184,10 @@ function renderForm() {
         const label = field.readOnly ? `${field.label} <small>(Read Only)</small>` : field.label;
         const isRequired = field.name === 'link' ? '' : 'required';
 
-        // --- HANDLING KHUSUS FILE (UPLOAD & VIEW) ---
         if (field.type === 'file') {
             let inputHtml = '';
             
             if (field.readOnly) {
-                // MODE BACA (Pengaduan/Proposal): Cuma nampilin tombol lihat
                 inputHtml = `
                     <div id="view_file_${field.name}" style="padding: 10px; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px;">
                         <p id="no_file_${field.name}" style="color:#64748b; font-size:13px; margin:0;">Tidak ada file terlampir.</p>
@@ -207,7 +200,6 @@ function renderForm() {
                     </div>
                 `;
             } else {
-                // MODE UPLOAD (Galeri/Artikel): Nampilin input drag & drop
                 inputHtml = `
                     <div class="file-upload-container">
                         <input type="file" id="inp_${field.name}" class="file-upload-input" accept="image/*" onchange="handleFileSelect(this, '${field.name}')">
@@ -231,7 +223,6 @@ function renderForm() {
                     </div>
                 `;
             }
-
             return `<div class="form-group"><label>${label}</label>${inputHtml}</div>`;
         }
 
@@ -280,22 +271,15 @@ window.removeFile = (fieldName) => {
     document.getElementById(`preview_${fieldName}`).style.display = 'none';
 };
 
-// === MODAL & EDIT LOGIC ===
-// File: admin-crud.js
-
-// File: admin-crud.js
-
+// === MODAL LOGIC ===
 window.openModal = (isEdit = false) => {
     const modal = document.getElementById('crudModal');
     if(modal) modal.style.display = 'flex';
-    
     renderForm();
     
-    // === TAMBAHAN: RESET SCROLL KE ATAS ===
-    // Kita cari form di dalem modal, terus balikin scrollnya ke 0
+    // Reset Scroll
     const formContainer = document.querySelector('#crudForm'); 
     if(formContainer) formContainer.scrollTop = 0;
-    // ======================================
 
     if (!isEdit) {
         document.getElementById('modalTitle').textContent = 'Tambah Data Baru';
@@ -310,7 +294,6 @@ window.closeModal = () => {
     if(modal) modal.style.display = 'none';
 };
 
-// LOGIC MENGISI DATA KE FORM (TERMASUK MENAMPILKAN FILE)
 window.editData = (idx) => {
     editIndex = idx;
     openModal(true);
@@ -319,12 +302,9 @@ window.editData = (idx) => {
     const item = getData()[idx];
     
     config.fields.forEach(field => {
-        // Handle File Field
         if (field.type === 'file') {
             const fileVal = item[field.name];
-            
             if (field.readOnly) {
-                // Mode Baca (Pengaduan/Proposal)
                 const noFileEl = document.getElementById(`no_file_${field.name}`);
                 const hasFileEl = document.getElementById(`has_file_${field.name}`);
                 const imgViewEl = document.getElementById(`img_view_${field.name}`);
@@ -333,29 +313,23 @@ window.editData = (idx) => {
                 if (fileVal) {
                     noFileEl.style.display = 'none';
                     hasFileEl.style.display = 'block';
-                    
-                    // Cek apakah ini gambar atau bukan (simple check string base64 atau extensi)
-                    // Kalau dummy URL placeholder -> anggap gambar
                     const isImage = fileVal.startsWith('data:image') || fileVal.match(/\.(jpeg|jpg|gif|png)$/) != null || fileVal.includes('placeholder.com');
 
                     if (isImage) {
                         imgViewEl.src = fileVal;
                         imgViewEl.style.display = 'block';
-                        linkViewEl.href = fileVal; // Klik gambar buat download/buka full
+                        linkViewEl.href = fileVal;
                         linkViewEl.textContent = '🔍 Lihat Gambar Full';
                     } else {
-                        // Dokumen (PDF, dll)
                         imgViewEl.style.display = 'none';
-                        linkViewEl.href = fileVal; // Kalau real app ini URL ke file
+                        linkViewEl.href = fileVal;
                         linkViewEl.textContent = '📄 Download Dokumen';
                     }
                 } else {
                     noFileEl.style.display = 'block';
                     hasFileEl.style.display = 'none';
                 }
-
             } else {
-                // Mode Edit (Galeri/Artikel)
                 if (fileVal) {
                     document.getElementById(`preview_${field.name}`).style.display = 'flex';
                     document.getElementById(`img_${field.name}`).src = fileVal;
@@ -364,14 +338,13 @@ window.editData = (idx) => {
                 }
             }
         } else {
-            // Field Biasa
             const el = document.getElementById(`inp_${field.name}`);
             if(el && item[field.name]) el.value = item[field.name];
         }
     });
 };
 
-// === DELETE LOGIC (YANG MODAL KEREN) ===
+// === LOGIC DELETE DENGAN MODAL KEREN (SUDAH DIPERBAIKI) ===
 let indexToDelete = -1;
 
 window.deleteData = (idx) => {
@@ -431,7 +404,7 @@ if (crudForm) {
     });
 }
 
-// Close modal handlers
+// GLOBAL CLICK HANDLERS (Modal)
 window.addEventListener('click', (e) => {
     const crudModal = document.getElementById('crudModal');
     const deleteModal = document.getElementById('deleteModal');

@@ -105,61 +105,64 @@
 
     <main class="main-content">
         <div class="topbar">
-            <div class="topbar-left">
-                <h1>Dashboard</h1>
-                <p>Selamat datang kembali, Admin!</p>
-            </div>
-            <div class="topbar-right">
-            <div class="notification-wrapper">
-                <div class="topbar-notifications" onclick="toggleNotifications(event)">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9M13.73 21a2 2 0 01-3.46 0"/>
-                    </svg>
-                    <span class="notification-badge" id="notifCount">3</span>
-                </div>
-                <div class="notification-dropdown" id="notificationDropdown">
-                    <div class="notif-header">
-                        <h4>Notifikasi</h4>
-                        <a href="#" onclick="clearNotifs()">Tandai Terbaca</a>
-                    </div>
-                    <div class="notif-list">
-                        <div class="notif-item unread">
-                            <div class="notif-icon icon-pengaduan">⚠️</div>
-                            <div class="notif-text">
-                                <p><strong>Pengaduan Baru</strong></p>
-                                <span>Jalan rusak di RT 05 butuh penanganan.</span>
-                            </div>
-                        </div>
-                        <div class="notif-item unread">
-                            <div class="notif-icon icon-proposal">📄</div>
-                            <div class="notif-text">
-                                <p><strong>Proposal Masuk</strong></p>
-                                <span>Lomba 17an menunggu persetujuan.</span>
-                            </div>
-                        </div>
-                        <div class="notif-item">
-                            <div class="notif-icon icon-galeri">📷</div>
-                            <div class="notif-text">
-                                <p><strong>Galeri Update</strong></p>
-                                <span>Foto kerja bakti berhasil diupload.</span>
-                            </div>
-                        </div>
-            </div>
-            <div class="notif-footer">Lihat Semua Notifikasi</div>
-        </div>
+    <div class="topbar-left">
+        <h1>Dashboard</h1>
+        <p>Selamat datang kembali, Admin!</p>
     </div>
 
-    <div class="topbar-user">
-        <div class="user-avatar">AD</div>
-        <div class="user-info"><div class="user-name">Admin</div><div class="user-role">Super Admin</div></div>
-    </div>
-</div>
-                <div class="topbar-user">
-                    <div class="user-avatar">AD</div>
-                    <div class="user-info">
-                        <div class="user-name">Admin</div>
+    <div class="topbar-right">
+        <div class="notification-wrapper">
+            <div class="topbar-notifications" onclick="toggleNotifications(event)">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9M13.73 21a2 2 0 01-3.46 0"/>
+                </svg>
+                <span class="notification-badge" id="notifCount">3</span>
+            </div>
+
+            <div class="notification-dropdown" id="notificationDropdown">
+                <div class="notif-header">
+                    <h4>Notifikasi</h4>
+                    <a href="#" onclick="clearNotifs()">Tandai Terbaca</a>
+                </div>
+                <div class="notif-list">
+                    <div class="notif-item unread">
+                        <div class="notif-icon icon-pengaduan">⚠️</div>
+                        <div class="notif-text">
+                            <p><strong>Pengaduan Baru</strong></p>
+                            <span>Jalan rusak di RT 05 butuh penanganan.</span>
+                        </div>
+                    </div>
+                    <div class="notif-item unread">
+                        <div class="notif-icon icon-proposal">📄</div>
+                        <div class="notif-text">
+                            <p><strong>Proposal Masuk</strong></p>
+                            <span>Lomba 17an menunggu persetujuan.</span>
+                        </div>
+                    </div>
+                    <div class="notif-item">
+                        <div class="notif-icon icon-galeri">📷</div>
+                        <div class="notif-text">
+                            <p><strong>Galeri Update</strong></p>
+                            <span>Foto kerja bakti berhasil diupload.</span>
+                        </div>
                     </div>
                 </div>
+                <div class="notif-footer">Lihat Semua Notifikasi</div>
+            </div>
+        </div>
+
+        <div class="topbar-user">
+            <div class="user-avatar">SA</div>
+            <div class="user-info">
+                <div class="user-name"></div>
+                <div class="user-role">Super Admin</div>
+            </div>
+        </div>
+    </div>
+</div>
+    </div>
+</div>
+                
             </div>
         </div>
 
@@ -249,7 +252,7 @@
     <div class="modal-overlay" id="profileModal">
     <div class="modal-box profile-box">
         <div class="profile-header">
-            <div class="profile-avatar-lg">AD</div>
+            <div class="profile-avatar-lg">SA</div>
             <h3>Admin Utama</h3>
             <p class="profile-role">Super Administrator</p>
         </div>

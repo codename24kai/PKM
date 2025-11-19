@@ -39,6 +39,23 @@
             <div id="alertBox" class="alert"></div>
 
             <form id="loginForm">
+
+                <div class="form-group">
+                    <label for="role" class="form-label">Masuk Sebagai</label>
+                    <div class="input-wrapper">
+                        <svg class="input-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                        </svg>
+                        <select id="role" class="form-input" style="cursor: pointer; appearance: none;">
+                            <option value="Super Admin">Super Admin</option>
+                            <option value="Admin">Admin Biasa</option>
+                        </select>
+                        <svg style="position: absolute; right: 16px; top: 50%; transform: translateY(-50%); pointer-events: none; color: #666;" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </div>
+                </div>
+
                 <div class="form-group">
                     <label for="username" class="form-label">Username</label>
                     <div class="input-wrapper">
