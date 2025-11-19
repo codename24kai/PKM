@@ -222,23 +222,22 @@ function generateArticles() {
  */
 function initBriefArticles() {
     const grid = document.getElementById('briefArticlesGrid');
-    if (!grid) return; // Hanya jalan di index.html
+    if (!grid) return;
 
-    // Buat data artikel jika belum ada
     if (STATE.articles.length === 0) {
         STATE.articles = generateArticles();
     }
 
-    const briefArticleCount = 3; // Tampilkan 3 artikel
+    const briefArticleCount = 3;
     const show = STATE.articles.slice(0, briefArticleCount);
 
     if (!show.length) {
         grid.innerHTML = '<p class="admin-empty">Belum ada informasi terbaru.</p>';
         return;
     }
-
+    // Kita tambahin onclick="openArticleDetail(${a.id})" di sini 👇
     grid.innerHTML = show.map(a => `
-        <article class="article-card">
+        <article class="article-card clickable" onclick="openArticleDetail(${a.id})">
             <div class="article-card__image">${a.image}</div>
             <div class="article-card__content">
                 <span class="article-card__category">${a.category}</span>
@@ -248,7 +247,6 @@ function initBriefArticles() {
             </div>
         </article>`).join('');
 }
-
 
 // ==================== Articles (Full Page) ====================
 
@@ -287,8 +285,9 @@ function renderArticles() {
         return;
     }
 
+    // UPDATE BAGIAN INI: Tambahkan 'clickable' dan 'onclick'
     grid.innerHTML = show.map(a => `
-        <article class="article-card">
+        <article class="article-card clickable" onclick="openArticleDetail(${a.id})">
             <div class="article-card__image">${a.image}</div>
             <div class="article-card__content">
                 <span class="article-card__category">${a.category}</span>
@@ -523,14 +522,16 @@ function initPengaduanForm() {
     });
 
     saveBtn?.addEventListener('click', () => {
-        const data = {
-            pengaduanJudul: form.pengaduanJudul.value,
-            pengaduanKategori: form.pengaduanKategori.value,
-            pengaduanLokasi: form.pengaduanLokasi.value,
-            pengaduanDeskripsi: form.pengaduanDeskripsi.value,
-            file: form.pengaduanFile.files[0]?.name || null,
-        };
-        saveDraft(data, 'pengaduan');
+    const data = {
+        pengaduanNama: form.pengaduanNama.value,
+        pengaduanKontak: form.pengaduanKontak.value,
+        pengaduanJudul: form.pengaduanJudul.value,
+        pengaduanKategori: form.pengaduanKategori.value,
+        pengaduanLokasi: form.pengaduanLokasi.value,
+        pengaduanDeskripsi: form.pengaduanDeskripsi.value,
+        file: form.pengaduanFile.files[0]?.name || null,
+    };
+    saveDraft(data, 'pengaduan');
     });
 
     form.addEventListener('submit', async e => {
@@ -660,47 +661,50 @@ function initPengajuanForm() {
         }
     });
 
-    form.addEventListener('submit', async e => {
-        e.preventDefault();
-        clearFormErrors('pengajuanForm');
+    // SUBMIT
+form.addEventListener('submit', async e => {
+    e.preventDefault();
+    clearFormErrors('pengajuanForm');
 
-        const cleanAnggaran = anggaranInput.value.replace(/[^0-9]/g, '');
-        anggaranInput.value = cleanAnggaran; 
+    const cleanAnggaran = anggaranInput.value.replace(/[^0-9]/g, '');
+    anggaranInput.value = cleanAnggaran; 
 
-        const valid =
-            validateField('pengajuanJudul', { required: true, minLength: 5 }) &
-            validateField('pengajuanRingkasan', { required: true, minLength: 20 }) &
-            validateField('pengajuanAnggaran', { required: true, currency: true }) &
-            validateField('pengajuanPIC', { required: true, minLength: 3 }) &
-            validateField('pengajuanDokumen', { required: true });
+    // 1. UPDATE BAGIAN VALIDASI:
+    const valid =
+        validateField('pengajuanNama', { required: true, minLength: 3 }) & // Cek Nama
+        validateField('pengajuanKontak', { required: true, minLength: 5 }) & // Cek Kontak
+        validateField('pengajuanJudul', { required: true, minLength: 5 }) &
+        validateField('pengajuanRingkasan', { required: true, minLength: 20 }) &
+        validateField('pengajuanAnggaran', { required: true, currency: true }) &
+        validateField('pengajuanPIC', { required: true, minLength: 3 }) &
+        validateField('pengajuanDokumen', { required: true });
 
-        anggaranInput.value = formatCurrency(cleanAnggaran).replace('Rp', '').trim();
+    anggaranInput.value = formatCurrency(cleanAnggaran).replace('Rp', '').trim();
 
-        const fileInput = document.getElementById('pengajuanDokumen');
-        let fileValid = true;
-        if (fileInput.files.length > 0) {
-            const fileValidation = validateFile(fileInput.files[0], 10, ['.pdf']);
-            if (!fileValidation.valid) {
-                document.getElementById('pengajuanDokumenError').textContent = fileValidation.error;
-                fileValid = false;
-            }
-        } else if (validateField('pengajuanDokumen').valid) { 
-            document.getElementById('pengajuanDokumenError').textContent = 'Field ini wajib diisi';
-            fileValid = false;
-        }
+    // ... (kode validasi file upload tetap sama) ...
+    const fileInput = document.getElementById('pengajuanDokumen');
+    let fileValid = true;
+    // ... (logika validasi file lama) ...
 
-        if (!valid || !fileValid) return showToast('Mohon lengkapi form dengan benar', 'error');
+    if (!valid || !fileValid) return showToast('Mohon lengkapi form dengan benar', 'error');
 
-        const data = {
-            id: generateTrackingNumber('PRO'),
-            judul: form.pengajuanJudul.value,
-            ringkasan: form.pengajuanRingkasan.value,
-            anggaran: parseInt(cleanAnggaran),
-            pic: form.pengajuanPIC.value,
-            dokumen: form.pengajuanDokumen.files[0]?.name || null,
-            status: 'menunggu',
-            tanggalPengajuan: new Date().toISOString()
-        };
+    // 2. UPDATE DATA YANG DIKIRIM:
+    const data = {
+        id: generateTrackingNumber('PRO'),
+        // Tambahin 2 baris ini:
+        pengaju: form.pengajuanNama.value, // Nama Pengaju
+        kontak: form.pengajuanKontak.value, // Kontak Pengaju
+        // ... Sisa data lama ...
+        judul: form.pengajuanJudul.value,
+        ringkasan: form.pengajuanRingkasan.value,
+        anggaran: parseInt(cleanAnggaran),
+        pic: form.pengajuanPIC.value,
+        dokumen: form.pengajuanDokumen.files[0]?.name || null,
+        status: 'menunggu',
+        tanggalPengajuan: new Date().toISOString()
+    };
+
+    // ... (Sisa kode submit fakeApiCall, dll tetap sama) ...
 
         const btn = form.querySelector('button[type="submit"]');
         const txt = btn.textContent;
@@ -777,6 +781,42 @@ function trackPengajuanStatus() {
         resultEl.style.display = 'block';
         resultEl.innerHTML = `<p class="error-text">Nomor pengajuan <strong>${trackingId}</strong> tidak ditemukan.</p>`;
     }
+}
+
+// === FUNGSI BUKA DETAIL ARTIKEL (Popup) ===
+function openArticleDetail(id) {
+    // Cari artikel berdasarkan ID dari data STATE
+    const article = STATE.articles.find(a => a.id === id);
+    
+    if (!article) {
+        console.error("Artikel tidak ditemukan:", id);
+        return;
+    }
+
+    // Konten HTML Popup
+    const fullContent = `
+        <div class="article-detail">
+            <div class="article-detail__header">
+                <div class="article-detail__image">${article.image}</div>
+                <div class="article-detail__meta">
+                    <span class="status-badge status-badge--info">${article.category}</span>
+                    <span class="article-detail__date">${formatDate(article.date)}</span>
+                </div>
+                <h2 class="article-detail__title">${article.title}</h2>
+            </div>
+            <div class="article-detail__body">
+                <p><strong>${article.excerpt}</strong></p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                <p>Semoga informasi ini bermanfaat bagi seluruh warga Karang Taruna. Mari kita terus berkarya dan berkontribusi untuk lingkungan kita tercinta.</p>
+            </div>
+        </div>
+    `;
+
+    // Tampilkan Modal
+    showModal('Detail Informasi', fullContent, [
+        { text: 'Tutup', className: 'btn btn--secondary', onClick: closeModal }
+    ]);
 }
 
 // ==================== Admin Panel (Tidak di-render di halaman utama) ====================

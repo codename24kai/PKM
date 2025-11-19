@@ -52,6 +52,21 @@
                 </div>
 
                 <form id="pengaduanForm" class="form form--large" novalidate>
+
+                    <div class="form__row">
+                        <div class="form__group">
+                            <label for="pengaduanNama" class="form__label">Nama Lengkap <span class="required">*</span></label>
+                            <input type="text" id="pengaduanNama" class="form__input" placeholder="Masukkan nama sesuai KTP" required aria-required="true">
+                            <span class="form__error" id="pengaduanNamaError"></span>
+                        </div>
+
+                        <div class="form__group">
+                            <label for="pengaduanKontak" class="form__label">No. HP / Email <span class="required">*</span></label>
+                            <input type="text" id="pengaduanKontak" class="form__input" placeholder="Contoh: 0812xxx atau email@domain.com" required aria-required="true">
+                            <span class="form__error" id="pengaduanKontakError"></span>
+                        </div>
+                    </div>
+                    
                     <div class="form__row">
                         <div class="form__group form__group--full">
                             <label for="pengaduanJudul" class="form__label">Judul Pengaduan <span class="required">*</span></label>
