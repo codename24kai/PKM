@@ -187,6 +187,69 @@ function initModal() {
     });
 }
 
+// === HERO CAROUSEL LOGIC (UPDATED) ===
+// === HERO CAROUSEL LOGIC (Pastikan kode ini ada) ===
+function initHeroCarousel() {
+    const slides = document.querySelectorAll('.hero-slide');
+    const dots = document.querySelectorAll('.carousel-dots .dot');
+    const prevBtn = document.querySelector('.prev-btn');
+    const nextBtn = document.querySelector('.next-btn');
+    
+    // Kalau gak ada carousel di halaman ini, stop biar gak error
+    if (slides.length === 0) return;
+
+    let currentSlide = 0;
+    let slideInterval;
+    const intervalTime = 3500; // 3.5 Detik
+
+    // Fungsi Ganti Slide
+    function goToSlide(index) {
+        // 1. Hapus class active dari slide & dot yang sekarang
+        slides[currentSlide].classList.remove('active');
+        if(dots[currentSlide]) dots[currentSlide].classList.remove('active');
+
+        // 2. Hitung index baru (biar muter terus/looping)
+        currentSlide = (index + slides.length) % slides.length;
+
+        // 3. Tambah class active ke slide & dot baru
+        slides[currentSlide].classList.add('active');
+        if(dots[currentSlide]) dots[currentSlide].classList.add('active');
+    }
+
+    // Fungsi Otomatis Jalan
+    function startAutoSlide() {
+        slideInterval = setInterval(() => {
+            goToSlide(currentSlide + 1);
+        }, intervalTime);
+    }
+
+    // Reset Timer (Biar gak loncat/bentrok pas abis diklik)
+    function resetTimer() {
+        clearInterval(slideInterval);
+        startAutoSlide();
+    }
+
+    // Event Listeners Tombol Kiri/Kanan
+    if (nextBtn) {
+        nextBtn.addEventListener('click', (e) => {
+            e.preventDefault(); // Biar gak refresh halaman kalau tombolnya tipe link
+            goToSlide(currentSlide + 1);
+            resetTimer();
+        });
+    }
+
+    if (prevBtn) {
+        prevBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            goToSlide(currentSlide - 1);
+            resetTimer();
+        });
+    }
+
+    // Mulai Otomatis pas pertama kali buka
+    startAutoSlide();
+}
+
 // ==================== Articles (Data) ====================
 
 function generateArticles() {
@@ -877,6 +940,7 @@ function initAdminPanel() {
 document.addEventListener('DOMContentLoaded', () => {
     initNavigation();
     initModal();
+    initHeroCarousel();
     
     // Panggil kedua fungsi artikel.
     // Hanya fungsi yang menemukan ID-nya yang akan berjalan.

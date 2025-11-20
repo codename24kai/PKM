@@ -1413,6 +1413,24 @@ a {
         z-index: 1002; /* Ensure nav is above overlay */
     }
 
+    .nav__overlay {
+        z-index: 1000; /* Level Overlay */
+    }
+
+    /* FIX PENTING: Angkat Menu & Tombol Close ke atas Overlay */
+    .nav__list, 
+    .nav__close {
+        position: relative; /* Wajib ada biar z-index jalan */
+        z-index: 2002;      /* Harus lebih tinggi dari 1000 */
+    }
+
+    /* Pastikan list menu bisa di-scroll kalau kepanjangan */
+    .nav__list {
+        height: 100%;
+        overflow-y: auto;
+        padding-top: 40px; /* Kasih jarak dari tombol close */
+    }
+
     .nav--open {
         right: 0;
     }
@@ -1653,6 +1671,137 @@ a {
         left: var(--spacing-md);
         max-width: none;
     }
+}
+
+/* === HERO CAROUSEL STYLE (FIXED) === */
+
+/* 1. Wadah Utama */
+.hero__image {
+    position: relative;
+    width: 100%;
+    height: 400px; /* Wajib ada tingginya */
+    border-radius: 20px;
+    overflow: hidden; /* Biar sudut gambar kepotong rapi */
+    box-shadow: var(--shadow-lg);
+    display: block; /* Reset display flex bawaan hero__image lama */
+}
+
+/* 2. Kotak Pembungkus */
+.hero-carousel {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+/* 3. Gambar Slide (INI YG BIKIN NUMPUK RAPI) */
+.hero-slide {
+    position: absolute; /* KUNCI: Biar numpuk di satu tempat */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Biar gambar full tanpa gepeng */
+    opacity: 0; /* Default sembunyi */
+    transition: opacity 1s ease-in-out; /* Efek fade halus */
+    z-index: 1;
+}
+
+/* 4. Slide Aktif (Muncul) */
+.hero-slide.active {
+    opacity: 1;
+    z-index: 2;
+}
+
+/* 5. Titik Indikator */
+.carousel-dots {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+    z-index: 10;
+}
+
+.carousel-dots .dot {
+    width: 10px;
+    height: 10px;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    transition: all 0.3s;
+}
+
+.carousel-dots .dot.active {
+    background: var(--color-secondary); /* Warna Kuning */
+    width: 30px;
+    border-radius: 10px;
+}
+
+/* Responsive HP */
+@media (max-width: 768px) {
+    .hero__image {
+        height: 250px; /* Lebih pendek di HP */
+        margin-top: 20px;
+    }
+}
+
+/* File: assets/style.css */
+
+/* === CAROUSEL NAVIGATION BUTTONS (FIXED POSITION) === */
+
+.carousel-btn {
+    position: absolute;        /* Wajib absolute biar bisa ngambang */
+    top: 50%;                  /* Turun 50% dari atas container */
+    transform: translateY(-50%); /* Tarik balik 50% dari tinggi tombol biar pas tengah */
+    
+    width: 44px;               /* Ukuran tombol */
+    height: 44px;
+    border-radius: 50%;        /* Biar bulet sempurna */
+    border: none;
+    cursor: pointer;
+    z-index: 20;               /* Pastikan di atas gambar & titik */
+    
+    /* Styling Tampilan (Glassmorphism) */
+    background-color: rgba(0, 0, 0, 0.4); /* Hitam transparan */
+    color: white;              /* Warna panah */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    
+    opacity: 0; /* Sembunyi dulu kalau gak di-hover */
+}
+
+/* Posisi Kiri & Kanan */
+.prev-btn {
+    left: 20px; /* Jarak dari kiri */
+}
+
+.next-btn {
+    right: 20px; /* Jarak dari kanan */
+}
+
+/* Hover Effect: Muncul saat mouse masuk area gambar */
+.hero-carousel:hover .carousel-btn {
+    opacity: 1;
+}
+
+/* Hover Effect: Tombol jadi lebih terang pas disorot */
+.carousel-btn:hover {
+    background-color: var(--color-primary); /* Jadi merah (warna tema) */
+    transform: translateY(-50%) scale(1.1); /* Efek membesar dikit */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+/* Responsif di HP: Tombol selalu muncul tapi agak kecil */
+@media (max-width: 768px) {
+    .carousel-btn {
+        opacity: 1; /* Selalu muncul di HP */
+        width: 32px;
+        height: 32px;
+    }
+    .prev-btn { left: 10px; }
+    .next-btn { right: 10px; }
 }
 
 /* ==================== Accessibility ==================== */
