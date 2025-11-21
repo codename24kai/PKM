@@ -15,16 +15,22 @@
 // ==================== Global State ====================
 const STATE = {
     articles: [],
+    galleries: [], // Tambahan state untuk galeri
     currentPage: 1,
     articlesPerPage: 6,
     filteredArticles: [],
     submissions: {
         pengaduan: [],
-        mediasi: [],
         pengajuan: []
     },
-    isAdminLoggedIn: false
+    // State khusus Lightbox
+    lightbox: {
+        activeImages: [], // Array URL gambar yang sedang dibuka
+        currentIndex: 0
+    }
 };
+
+
 
 // Admin credentials (dummy - stored in JS)
 const ADMIN_CREDENTIALS = {
@@ -105,6 +111,181 @@ function fakeApiCall(data, delay = 1000) {
         setTimeout(() => resolve({ success: true, data, message: 'Data berhasil dikirim' }), delay);
     });
 }
+
+// ==================== NEW: GALLERY & LIGHTBOX LOGIC ====================
+
+function initGallery() {
+    const grid = document.getElementById('galleryGrid');
+    if (!grid) return; // Hanya jalan di galeri.html
+
+    // Ambil data dari LocalStorage (disimpan oleh Admin)
+    const storedData = localStorage.getItem('db_galeri');
+    let galleries = storedData ? JSON.parse(storedData) : [];
+
+    // Kalau kosong, pakai dummy data
+    if (galleries.length === 0) {
+        galleries = [
+            {
+                id: 1,
+                caption: "Kerja Bakti Lingkungan",
+                image: ["https://via.placeholder.com/800x600?text=Kerja+Bakti+1", "https://via.placeholder.com/800x600?text=Kerja+Bakti+2"],
+                date: "2025-01-15"
+            },
+            {
+                id: 2,
+                caption: "Rapat Bulanan",
+                image: "https://via.placeholder.com/800x600?text=Rapat+KTSU", // Support string tunggal (legacy)
+                date: "2025-02-01"
+            }
+        ];
+    }
+
+    STATE.galleries = galleries;
+    renderGalleryGrid(grid);
+    initLightboxControls();
+}
+
+function renderGalleryGrid(container) {
+    if (STATE.galleries.length === 0) {
+        container.innerHTML = '<p style="grid-column:1/-1;text-align:center;">Belum ada dokumentasi.</p>';
+        return;
+    }
+
+    container.innerHTML = STATE.galleries.map((item, index) => {
+        // Cek apakah image itu Array atau String tunggal
+        // Kita ambil gambar pertama sebagai thumbnail
+        let thumbnail = '';
+        let countBadge = '';
+        
+        if (Array.isArray(item.image)) {
+            thumbnail = item.image[0]; // Ambil yang pertama
+            if (item.image.length > 1) {
+                // Tambah badge icon layer kalau foto > 1
+                countBadge = `<div style="position:absolute; top:10px; right:10px; background:rgba(0,0,0,0.6); color:white; padding:4px 8px; border-radius:4px; font-size:12px;">
+                    📷 ${item.image.length} Foto
+                </div>`;
+            }
+        } else {
+            thumbnail = item.image; // Legacy support
+        }
+
+        return `
+            <div class="gallery-item" onclick="openLightbox(${index})">
+                <div style="position:relative;">
+                    <img src="${thumbnail}" alt="${item.caption}">
+                    ${countBadge}
+                </div>
+                <div class="gallery-item__caption">
+                    <strong>${item.caption}</strong><br>
+                    <small style="color:#666">${formatDate(item.date)}</small>
+                </div>
+            </div>
+        `;
+    }).join('');
+}
+
+// --- LIGHTBOX LOGIC ---
+
+function openLightbox(galleryIndex) {
+    const item = STATE.galleries[galleryIndex];
+    if (!item) return;
+
+    // Normalisasi data gambar jadi Array, biar logic-nya seragam
+    if (Array.isArray(item.image)) {
+        STATE.lightbox.activeImages = item.image;
+    } else {
+        STATE.lightbox.activeImages = [item.image];
+    }
+
+    STATE.lightbox.currentIndex = 0;
+    updateLightboxView();
+    
+    const lightbox = document.getElementById('lightbox');
+    lightbox.classList.add('active');
+    document.body.style.overflow = 'hidden'; // Disable scroll body
+}
+
+function updateLightboxView() {
+    const imgEl = document.getElementById('lightboxImg');
+    const prevBtn = document.getElementById('lightboxPrev');
+    const nextBtn = document.getElementById('lightboxNext');
+    const dotsContainer = document.getElementById('lightboxDots');
+
+    // Set Gambar Utama
+    const currentUrl = STATE.lightbox.activeImages[STATE.lightbox.currentIndex];
+    imgEl.src = currentUrl;
+
+    // Logic Tombol Navigasi (Carousel)
+    if (STATE.lightbox.activeImages.length > 1) {
+        prevBtn.style.display = 'flex';
+        nextBtn.style.display = 'flex';
+        
+        // Render Dots
+        dotsContainer.innerHTML = STATE.lightbox.activeImages.map((_, idx) => `
+            <span class="lightbox__dot ${idx === STATE.lightbox.currentIndex ? 'active' : ''}" 
+                  onclick="goToLightboxSlide(${idx})"></span>
+        `).join('');
+    } else {
+        // Kalau cuma 1 foto, sembunyikan navigasi
+        prevBtn.style.display = 'none';
+        nextBtn.style.display = 'none';
+        dotsContainer.innerHTML = '';
+    }
+}
+
+// Fungsi global biar bisa dipanggil dari HTML (onclick)
+window.goToLightboxSlide = (index) => {
+    STATE.lightbox.currentIndex = index;
+    updateLightboxView();
+};
+
+function initLightboxControls() {
+    const closeBtn = document.getElementById('lightboxClose');
+    const prevBtn = document.getElementById('lightboxPrev');
+    const nextBtn = document.getElementById('lightboxNext');
+    const lightbox = document.getElementById('lightbox');
+
+    if(!lightbox) return;
+
+    // Close
+    const closeAction = () => {
+        lightbox.classList.remove('active');
+        document.body.style.overflow = 'auto'; // Enable scroll lagi
+    };
+    
+    closeBtn.addEventListener('click', closeAction);
+    
+    // Klik background buat close
+    lightbox.addEventListener('click', (e) => {
+        if (e.target === lightbox) closeAction();
+    });
+
+    // Next Slide
+    nextBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        STATE.lightbox.currentIndex = (STATE.lightbox.currentIndex + 1) % STATE.lightbox.activeImages.length;
+        updateLightboxView();
+    });
+
+    // Prev Slide
+    prevBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        STATE.lightbox.currentIndex = (STATE.lightbox.currentIndex - 1 + STATE.lightbox.activeImages.length) % STATE.lightbox.activeImages.length;
+        updateLightboxView();
+    });
+
+    // Keyboard Support (Esc, Arrow Left, Arrow Right)
+    document.addEventListener('keydown', (e) => {
+        if (!lightbox.classList.contains('active')) return;
+        
+        if (e.key === 'Escape') closeAction();
+        if (e.key === 'ArrowRight' && STATE.lightbox.activeImages.length > 1) nextBtn.click();
+        if (e.key === 'ArrowLeft' && STATE.lightbox.activeImages.length > 1) prevBtn.click();
+    });
+}
+if (document.getElementById('galleryGrid')) {
+        initGallery();
+    }
 
 // ==================== PDF Export ====================
 
