@@ -9,7 +9,7 @@ const SCHEMAS = {
         fields: [
             { name: 'image', label: 'Upload Foto Kegiatan', type: 'file' },
             { name: 'caption', label: 'Judul Kegiatan', type: 'text' },
-            { name: 'date', label: 'Tanggal Pelaksanaan', type: 'date' }
+            { name: 'date', label: 'Tanggal Upload', type: 'date' }
         ]
     },
     artikel: {
